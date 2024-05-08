@@ -1,19 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part "news_model.freezed.dart";
-part "news_model.g.dart";
+part "poke_news_model.freezed.dart";
+part "poke_news_model.g.dart";
 
 @freezed
-class NewsModel with _$NewsModel {
-  const factory NewsModel(
+class PokeNewsModel with _$PokeNewsModel {
+  const factory PokeNewsModel(
       {required String id,
       required String title,
       required String content,
       required String cover,
-      @DateTimeConverter() required DateTime createdAt}) = _NewsModel;
+      @DateTimeConverter() required DateTime createdAt}) = _PokeNewsModel;
 
-  factory NewsModel.fromJson(Map<String, dynamic> json) =>
-      _$NewsModelFromJson(json);
+  factory PokeNewsModel.fromJson(Map<String, dynamic> json) =>
+      _$PokeNewsModelFromJson(json);
 }
 
 class DateTimeConverter extends JsonConverter<DateTime, String> {

@@ -1,9 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/data/sources/api/pokenew_api.dart';
-import 'package:test_/domain/entities/news_entity.dart';
-import 'package:test_/domain/providers/news_provider.dart';
+import 'package:test_/data/sources/api/pokenews_api.dart';
+import 'package:test_/domain/entities/poke_news_entity.dart';
+import 'package:test_/domain/providers/poke_news_provider.dart';
 import 'package:test_/presentation/components/button.dart';
 import 'package:test_/presentation/components/listtile.dart';
 import 'package:test_/presentation/components/scaffold.dart';
@@ -34,14 +34,15 @@ class _PokemonNewsSection extends ConsumerStatefulWidget {
 }
 
 class _PokemonNewsSectionState extends ConsumerState<_PokemonNewsSection> {
-  final pagingController = PagingController<int, NewsEntity>(firstPageKey: 1);
+  final pagingController =
+      PagingController<int, PokeNewsEntity>(firstPageKey: 1);
 
   @override
   void initState() {
     super.initState();
     pagingController.addPageRequestListener((page) async {
-      var items = await ref.read(getNewsProvider(page).future);
-      if (items.length >= tApiPaginationLimit) {
+      var items = await ref.read(getPokeNewsProvider(page).future);
+      if (items.length >= tPokeNewsApiPaginationLimit) {
         pagingController.appendPage(items, page + 1);
       } else {
         pagingController.appendLastPage(items);
@@ -61,12 +62,15 @@ class _PokemonNewsSectionState extends ConsumerState<_PokemonNewsSection> {
           children: [
             Text("Pokémon News", style: textTheme.titleMedium),
             TextButton(
-                onPressed: pagingController.refresh,
+                onPressed: () {
+                  ref.invalidate(getPokeNewsProvider);
+                  pagingController.refresh();
+                },
                 child: const Text("Refresh")),
           ],
         ),
       ),
-      PagedListView<int, NewsEntity>(
+      PagedListView<int, PokeNewsEntity>(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           pagingController: pagingController,
@@ -100,7 +104,7 @@ class _AppBarSection extends StatelessWidget {
 
     return SliverAppBar.large(
       shape: const RoundedRectangleBorder(borderRadius: borderRadius),
-      expandedHeight: 450,
+      expandedHeight: 480,
       actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
       title: Text("Pokedex",
           style: textTheme.titleLarge?.copyWith(color: Colors.white)),
@@ -146,6 +150,7 @@ class _ButtonGridSection extends StatelessWidget {
       shrinkWrap: true,
       children: [
         OpenContainer(
+            closedElevation: 0,
             closedBuilder: (context, action) => PokeFilledButton(
                 backgroundColor: Colors.teal,
                 onPressed: action,

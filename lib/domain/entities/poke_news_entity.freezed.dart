@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'news_model.dart';
+part of 'poke_news_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,42 +14,31 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
-  return _NewsModel.fromJson(json);
-}
-
 /// @nodoc
-mixin _$NewsModel {
-  String get id => throw _privateConstructorUsedError;
+mixin _$PokeNewsEntity {
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get cover => throw _privateConstructorUsedError;
-  @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NewsModelCopyWith<NewsModel> get copyWith =>
+  $PokeNewsEntityCopyWith<PokeNewsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NewsModelCopyWith<$Res> {
-  factory $NewsModelCopyWith(NewsModel value, $Res Function(NewsModel) then) =
-      _$NewsModelCopyWithImpl<$Res, NewsModel>;
+abstract class $PokeNewsEntityCopyWith<$Res> {
+  factory $PokeNewsEntityCopyWith(
+          PokeNewsEntity value, $Res Function(PokeNewsEntity) then) =
+      _$PokeNewsEntityCopyWithImpl<$Res, PokeNewsEntity>;
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      String content,
-      String cover,
-      @DateTimeConverter() DateTime createdAt});
+  $Res call({String title, String content, String cover, DateTime createdAt});
 }
 
 /// @nodoc
-class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
-    implements $NewsModelCopyWith<$Res> {
-  _$NewsModelCopyWithImpl(this._value, this._then);
+class _$PokeNewsEntityCopyWithImpl<$Res, $Val extends PokeNewsEntity>
+    implements $PokeNewsEntityCopyWith<$Res> {
+  _$PokeNewsEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -59,17 +48,12 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = null,
     Object? content = null,
     Object? cover = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -91,43 +75,33 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
 }
 
 /// @nodoc
-abstract class _$$NewsModelImplCopyWith<$Res>
-    implements $NewsModelCopyWith<$Res> {
-  factory _$$NewsModelImplCopyWith(
-          _$NewsModelImpl value, $Res Function(_$NewsModelImpl) then) =
-      __$$NewsModelImplCopyWithImpl<$Res>;
+abstract class _$$PokeNewsEntityImplCopyWith<$Res>
+    implements $PokeNewsEntityCopyWith<$Res> {
+  factory _$$PokeNewsEntityImplCopyWith(_$PokeNewsEntityImpl value,
+          $Res Function(_$PokeNewsEntityImpl) then) =
+      __$$PokeNewsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      String content,
-      String cover,
-      @DateTimeConverter() DateTime createdAt});
+  $Res call({String title, String content, String cover, DateTime createdAt});
 }
 
 /// @nodoc
-class __$$NewsModelImplCopyWithImpl<$Res>
-    extends _$NewsModelCopyWithImpl<$Res, _$NewsModelImpl>
-    implements _$$NewsModelImplCopyWith<$Res> {
-  __$$NewsModelImplCopyWithImpl(
-      _$NewsModelImpl _value, $Res Function(_$NewsModelImpl) _then)
+class __$$PokeNewsEntityImplCopyWithImpl<$Res>
+    extends _$PokeNewsEntityCopyWithImpl<$Res, _$PokeNewsEntityImpl>
+    implements _$$PokeNewsEntityImplCopyWith<$Res> {
+  __$$PokeNewsEntityImplCopyWithImpl(
+      _$PokeNewsEntityImpl _value, $Res Function(_$PokeNewsEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = null,
     Object? content = null,
     Object? cover = null,
     Object? createdAt = null,
   }) {
-    return _then(_$NewsModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$PokeNewsEntityImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -149,20 +123,14 @@ class __$$NewsModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$NewsModelImpl implements _NewsModel {
-  const _$NewsModelImpl(
-      {required this.id,
-      required this.title,
+
+class _$PokeNewsEntityImpl implements _PokeNewsEntity {
+  const _$PokeNewsEntityImpl(
+      {required this.title,
       required this.content,
       required this.cover,
-      @DateTimeConverter() required this.createdAt});
+      required this.createdAt});
 
-  factory _$NewsModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NewsModelImplFromJson(json);
-
-  @override
-  final String id;
   @override
   final String title;
   @override
@@ -170,20 +138,18 @@ class _$NewsModelImpl implements _NewsModel {
   @override
   final String cover;
   @override
-  @DateTimeConverter()
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'NewsModel(id: $id, title: $title, content: $content, cover: $cover, createdAt: $createdAt)';
+    return 'PokeNewsEntity(title: $title, content: $content, cover: $cover, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NewsModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            other is _$PokeNewsEntityImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.cover, cover) || other.cover == cover) &&
@@ -191,39 +157,25 @@ class _$NewsModelImpl implements _NewsModel {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, content, cover, createdAt);
+      Object.hash(runtimeType, title, content, cover, createdAt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NewsModelImplCopyWith<_$NewsModelImpl> get copyWith =>
-      __$$NewsModelImplCopyWithImpl<_$NewsModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$NewsModelImplToJson(
-      this,
-    );
-  }
+  _$$PokeNewsEntityImplCopyWith<_$PokeNewsEntityImpl> get copyWith =>
+      __$$PokeNewsEntityImplCopyWithImpl<_$PokeNewsEntityImpl>(
+          this, _$identity);
 }
 
-abstract class _NewsModel implements NewsModel {
-  const factory _NewsModel(
-          {required final String id,
-          required final String title,
-          required final String content,
-          required final String cover,
-          @DateTimeConverter() required final DateTime createdAt}) =
-      _$NewsModelImpl;
+abstract class _PokeNewsEntity implements PokeNewsEntity {
+  const factory _PokeNewsEntity(
+      {required final String title,
+      required final String content,
+      required final String cover,
+      required final DateTime createdAt}) = _$PokeNewsEntityImpl;
 
-  factory _NewsModel.fromJson(Map<String, dynamic> json) =
-      _$NewsModelImpl.fromJson;
-
-  @override
-  String get id;
   @override
   String get title;
   @override
@@ -231,10 +183,9 @@ abstract class _NewsModel implements NewsModel {
   @override
   String get cover;
   @override
-  @DateTimeConverter()
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$NewsModelImplCopyWith<_$NewsModelImpl> get copyWith =>
+  _$$PokeNewsEntityImplCopyWith<_$PokeNewsEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

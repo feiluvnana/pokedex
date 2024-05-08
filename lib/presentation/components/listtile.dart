@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_/domain/entities/news_entity.dart';
+import 'package:test_/domain/entities/poke_news_entity.dart';
 
 class NewsListTile extends StatelessWidget {
-  final NewsEntity entity;
+  final PokeNewsEntity entity;
 
   const NewsListTile(this.entity, {super.key});
 

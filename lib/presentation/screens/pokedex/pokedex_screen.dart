@@ -1,44 +1,118 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_/core/theme.dart';
+import 'package:test_/data/sources/api/pokeapi.dart';
+import 'package:test_/domain/entities/pokemon_entity.dart';
+import 'package:test_/domain/providers/poke_provider.dart';
 import 'package:test_/presentation/components/card.dart';
 import 'package:test_/presentation/components/scaffold.dart';
 
-class PokedexScreen extends StatelessWidget {
+class PokedexScreen extends ConsumerStatefulWidget {
   const PokedexScreen({super.key});
+
+  @override
+  ConsumerState<PokedexScreen> createState() => _PokedexScreenState();
+}
+
+class _PokedexScreenState extends ConsumerState<PokedexScreen> {
+  final pagingController =
+      PagingController<int, PokemonEntity>(firstPageKey: 1);
+
+  @override
+  void initState() {
+    super.initState();
+    pagingController.addPageRequestListener((page) async {
+      var items = await ref.read(getPokemonsProvider(page).future);
+      if (items.length >= tPokeApiPaginationLimit) {
+        pagingController.appendPage(items, page + 1);
+      } else {
+        pagingController.appendLastPage(items);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PokeScaffold(
+        body: RefreshIndicator(
+      onRefresh: () async {
+        ref.invalidate(getPokemonsProvider);
+        pagingController.refresh();
+      },
+      child: CustomScrollView(
+        slivers: [
+          const _AppBarSection(),
+          const _TitleSection(),
+          _PokemonListSection(pagingController: pagingController)
+        ],
+      ),
+    ));
+  }
+}
+
+class _TitleSection extends StatelessWidget {
+  const _TitleSection();
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     const leadingWidth = 56;
 
-    return PokeScaffold(
-        body: CustomScrollView(
-      slivers: [
-        SliverAppBar(actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
-        ]),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: leadingWidth / 2 - tIconSize / 2),
-          sliver: SliverList.list(
-            children: [
-              Text("Pokedex", style: textTheme.titleLarge),
-              const SizedBox(height: 32),
-              GridView.count(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                childAspectRatio: 1.4,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: [
-                  PokedexCard(),
-                ],
-              )
-            ],
-          ),
-        )
-      ],
-    ));
+    return SliverPadding(
+      padding: const EdgeInsets.only(
+          left: leadingWidth / 2 - tIconSize / 2,
+          bottom: 32,
+          right: leadingWidth / 2 - tIconSize / 2),
+      sliver: SliverToBoxAdapter(
+          child: Text("Pokedex", style: textTheme.titleLarge)),
+    );
+  }
+}
+
+class _AppBarSection extends StatelessWidget {
+  const _AppBarSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))]);
+  }
+}
+
+class _PokemonListSection extends StatelessWidget {
+  const _PokemonListSection({required this.pagingController});
+
+  final PagingController<int, PokemonEntity> pagingController;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.all(8.0),
+      sliver: PagedSliverGrid<int, PokemonEntity>(
+          showNewPageProgressIndicatorAsGridChild: false,
+          pagingController: pagingController,
+          builderDelegate: PagedChildBuilderDelegate(
+              itemBuilder: (context, item, index) => PokedexCard(item),
+              noMoreItemsIndicatorBuilder: (context) => const Center(
+                      child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("No more Pokémon News."),
+                  )),
+              newPageProgressIndicatorBuilder: (context) => Image.asset(
+                  "assets/images/pika_loader.gif",
+                  width: 50,
+                  height: 50),
+              firstPageProgressIndicatorBuilder: (context) => Image.asset(
+                  "assets/images/pika_loader.gif",
+                  width: 50,
+                  height: 50)),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              mainAxisExtent:
+                  (MediaQuery.sizeOf(context).width - 8 * 2 - 10) / 2 / 1.4)),
+    );
   }
 }

@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
 
 class TagChip extends StatelessWidget {
-  final double height;
+
   final String label;
-  final Color backgroundColor;
-  final Color foregroundColor;
+
   const TagChip(
       {super.key,
-      this.height = 16,
-      required this.label,
-      required this.backgroundColor,
-      required this.foregroundColor});
+     
+      required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      alignment: Alignment.center,
+      height:  20,
+      alignment: Alignment.topCenter,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(height / 2)),
+          color: Colors.white38,
+          borderRadius: BorderRadius.circular(10)),
       child: Text(label,
           style: Theme.of(context)
               .textTheme
-              .labelMedium
-              ?.copyWith(color: foregroundColor)),
+              .labelSmall
+              ?.copyWith(color: Colors.white)),
     );
   }
 }

@@ -22,6 +22,9 @@ class _PokeScaffoldState extends State<PokeScaffold> {
     super.didChangeDependencies();
     final scrollController = PrimaryScrollController.maybeOf(context);
     scrollController?.addListener(() {
+      if (showPokeballRatio == max(1 - scrollController.offset / 100, 0)) {
+        return;
+      }
       setState(() {
         showPokeballRatio = max(1 - scrollController.offset / 100, 0);
       });

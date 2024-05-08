@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokenew_api.dart';
+part of 'pokenews_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'pokenew_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _RestClient implements RestClient {
-  _RestClient(
+class _PokeNewsApi implements PokeNewsApi {
+  _PokeNewsApi(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,9 +21,9 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<List<NewsModel>> getNews(
+  Future<List<PokeNewsModel>> getNews(
     int page, [
-    int limit = tApiPaginationLimit,
+    int limit = tPokeNewsApiPaginationLimit,
   ]) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -32,8 +32,8 @@ class _RestClient implements RestClient {
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<NewsModel>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<PokeNewsModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -50,7 +50,7 @@ class _RestClient implements RestClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => NewsModel.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => PokeNewsModel.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
