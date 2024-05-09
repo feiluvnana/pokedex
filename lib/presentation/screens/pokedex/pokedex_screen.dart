@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_/core/theme.dart';
+import 'package:test_/core/widgets.dart';
 import 'package:test_/data/sources/api/pokeapi.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/domain/providers/poke_provider.dart';
@@ -94,21 +95,14 @@ class _PokemonListSection extends StatelessWidget {
           pagingController: pagingController,
           builderDelegate: PagedChildBuilderDelegate(
               itemBuilder: (context, item, index) => PokedexCard(item,
-                  currentIndex: index,
-                  entities: pagingController.value.itemList ?? []),
+                  currentIndex: index, pagingController: pagingController),
               noMoreItemsIndicatorBuilder: (context) => const Center(
                       child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("No more Pokémon News."),
                   )),
-              newPageProgressIndicatorBuilder: (context) => Image.asset(
-                  "assets/images/pika_loader.gif",
-                  width: 50,
-                  height: 50),
-              firstPageProgressIndicatorBuilder: (context) => Image.asset(
-                  "assets/images/pika_loader.gif",
-                  width: 50,
-                  height: 50)),
+              newPageProgressIndicatorBuilder: (context) => tPikaLoader,
+              firstPageProgressIndicatorBuilder: (context) => tPikaLoader),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10,

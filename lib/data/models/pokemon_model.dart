@@ -7,11 +7,14 @@ part "pokemon_model.g.dart";
 
 @freezed
 class PokemonModel with _$PokemonModel {
-  const factory PokemonModel(
-      {required int id,
-      required String name,
-      @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
-      @_TypesConverter() required List<String> types}) = _PokemonModel;
+  const factory PokemonModel({
+    required int id,
+    required String name,
+    required int weight,
+    required int height,
+    @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
+    @_TypesConverter() required List<String> types,
+  }) = _PokemonModel;
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) =>
       _$PokemonModelFromJson(json);

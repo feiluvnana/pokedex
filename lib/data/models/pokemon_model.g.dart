@@ -10,6 +10,8 @@ _$PokemonModelImpl _$$PokemonModelImplFromJson(Map<String, dynamic> json) =>
     _$PokemonModelImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
+      weight: (json['weight'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
       avatar: _$JsonConverterFromJson<Map<String, dynamic>, String?>(
           json['sprites'], const _AvatarConverter().fromJson),
       types: const _TypesConverter().fromJson(json['types'] as List),
@@ -19,6 +21,8 @@ Map<String, dynamic> _$$PokemonModelImplToJson(_$PokemonModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'weight': instance.weight,
+      'height': instance.height,
       'sprites': const _AvatarConverter().toJson(instance.avatar),
       'types': const _TypesConverter().toJson(instance.types),
     };

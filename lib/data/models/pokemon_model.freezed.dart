@@ -22,6 +22,8 @@ PokemonModel _$PokemonModelFromJson(Map<String, dynamic> json) {
 mixin _$PokemonModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int get weight => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
   @JsonKey(name: "sprites")
   @_AvatarConverter()
   String? get avatar => throw _privateConstructorUsedError;
@@ -43,6 +45,8 @@ abstract class $PokemonModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      int weight,
+      int height,
       @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
       @_TypesConverter() List<String> types});
 }
@@ -62,6 +66,8 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? weight = null,
+    Object? height = null,
     Object? avatar = freezed,
     Object? types = null,
   }) {
@@ -74,6 +80,14 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      weight: null == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -97,6 +111,8 @@ abstract class _$$PokemonModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
+      int weight,
+      int height,
       @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
       @_TypesConverter() List<String> types});
 }
@@ -114,6 +130,8 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? weight = null,
+    Object? height = null,
     Object? avatar = freezed,
     Object? types = null,
   }) {
@@ -126,6 +144,14 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      weight: null == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -144,6 +170,8 @@ class _$PokemonModelImpl implements _PokemonModel {
   const _$PokemonModelImpl(
       {required this.id,
       required this.name,
+      required this.weight,
+      required this.height,
       @JsonKey(name: "sprites") @_AvatarConverter() this.avatar,
       @_TypesConverter() required final List<String> types})
       : _types = types;
@@ -155,6 +183,10 @@ class _$PokemonModelImpl implements _PokemonModel {
   final int id;
   @override
   final String name;
+  @override
+  final int weight;
+  @override
+  final int height;
   @override
   @JsonKey(name: "sprites")
   @_AvatarConverter()
@@ -170,7 +202,7 @@ class _$PokemonModelImpl implements _PokemonModel {
 
   @override
   String toString() {
-    return 'PokemonModel(id: $id, name: $name, avatar: $avatar, types: $types)';
+    return 'PokemonModel(id: $id, name: $name, weight: $weight, height: $height, avatar: $avatar, types: $types)';
   }
 
   @override
@@ -180,13 +212,15 @@ class _$PokemonModelImpl implements _PokemonModel {
             other is _$PokemonModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.height, height) || other.height == height) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             const DeepCollectionEquality().equals(other._types, _types));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, avatar,
+  int get hashCode => Object.hash(runtimeType, id, name, weight, height, avatar,
       const DeepCollectionEquality().hash(_types));
 
   @JsonKey(ignore: true)
@@ -207,6 +241,8 @@ abstract class _PokemonModel implements PokemonModel {
   const factory _PokemonModel(
           {required final int id,
           required final String name,
+          required final int weight,
+          required final int height,
           @JsonKey(name: "sprites") @_AvatarConverter() final String? avatar,
           @_TypesConverter() required final List<String> types}) =
       _$PokemonModelImpl;
@@ -218,6 +254,10 @@ abstract class _PokemonModel implements PokemonModel {
   int get id;
   @override
   String get name;
+  @override
+  int get weight;
+  @override
+  int get height;
   @override
   @JsonKey(name: "sprites")
   @_AvatarConverter()

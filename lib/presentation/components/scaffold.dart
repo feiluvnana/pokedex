@@ -39,17 +39,20 @@ class _PokeScaffoldState extends State<PokeScaffold> {
         body: Stack(
           children: [
             widget.body ?? Container(),
-            Positioned(
-                top: -PokeScaffold.pokeballSize / 2 + kToolbarHeight / 2,
-                right: -PokeScaffold.pokeballSize / 2 +
-                    tIconButtonPadding +
-                    tIconSize / 2,
-                child: Image.asset("assets/images/pokeball.png",
-                    color:
-                        Colors.grey[400]?.withOpacity(0.3 * showPokeballRatio),
-                    width: PokeScaffold.pokeballSize,
-                    height: PokeScaffold.pokeballSize,
-                    filterQuality: FilterQuality.high))
+            if (showPokeballRatio != 0)
+              Positioned(
+                  top: -PokeScaffold.pokeballSize / 2 + kToolbarHeight / 2,
+                  right: -PokeScaffold.pokeballSize / 2 +
+                      tIconButtonPadding +
+                      tIconSize / 2,
+                  child: IgnorePointer(
+                    child: Image.asset("assets/images/pokeball.png",
+                        color: Colors.grey[400]
+                            ?.withOpacity(0.3 * showPokeballRatio),
+                        width: PokeScaffold.pokeballSize,
+                        height: PokeScaffold.pokeballSize,
+                        filterQuality: FilterQuality.high),
+                  ))
           ],
         ),
       ),

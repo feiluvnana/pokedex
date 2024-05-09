@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PokemonEntity {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
+  int get heightInCm => throw _privateConstructorUsedError;
+  double get weightInKg => throw _privateConstructorUsedError;
   List<String> get types => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +34,13 @@ abstract class $PokemonEntityCopyWith<$Res> {
           PokemonEntity value, $Res Function(PokemonEntity) then) =
       _$PokemonEntityCopyWithImpl<$Res, PokemonEntity>;
   @useResult
-  $Res call({int id, String name, String? avatar, List<String> types});
+  $Res call(
+      {String id,
+      String name,
+      String? avatar,
+      int heightInCm,
+      double weightInKg,
+      List<String> types});
 }
 
 /// @nodoc
@@ -51,13 +59,15 @@ class _$PokemonEntityCopyWithImpl<$Res, $Val extends PokemonEntity>
     Object? id = null,
     Object? name = null,
     Object? avatar = freezed,
+    Object? heightInCm = null,
+    Object? weightInKg = null,
     Object? types = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -66,6 +76,14 @@ class _$PokemonEntityCopyWithImpl<$Res, $Val extends PokemonEntity>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      heightInCm: null == heightInCm
+          ? _value.heightInCm
+          : heightInCm // ignore: cast_nullable_to_non_nullable
+              as int,
+      weightInKg: null == weightInKg
+          ? _value.weightInKg
+          : weightInKg // ignore: cast_nullable_to_non_nullable
+              as double,
       types: null == types
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
@@ -82,7 +100,13 @@ abstract class _$$PokemonEntityImplCopyWith<$Res>
       __$$PokemonEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String? avatar, List<String> types});
+  $Res call(
+      {String id,
+      String name,
+      String? avatar,
+      int heightInCm,
+      double weightInKg,
+      List<String> types});
 }
 
 /// @nodoc
@@ -99,13 +123,15 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? avatar = freezed,
+    Object? heightInCm = null,
+    Object? weightInKg = null,
     Object? types = null,
   }) {
     return _then(_$PokemonEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -114,6 +140,14 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      heightInCm: null == heightInCm
+          ? _value.heightInCm
+          : heightInCm // ignore: cast_nullable_to_non_nullable
+              as int,
+      weightInKg: null == weightInKg
+          ? _value.weightInKg
+          : weightInKg // ignore: cast_nullable_to_non_nullable
+              as double,
       types: null == types
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
@@ -129,16 +163,22 @@ class _$PokemonEntityImpl extends _PokemonEntity {
       {required this.id,
       required this.name,
       this.avatar,
+      required this.heightInCm,
+      required this.weightInKg,
       required final List<String> types})
       : _types = types,
         super._();
 
   @override
-  final int id;
+  final String id;
   @override
   final String name;
   @override
   final String? avatar;
+  @override
+  final int heightInCm;
+  @override
+  final double weightInKg;
   final List<String> _types;
   @override
   List<String> get types {
@@ -149,7 +189,7 @@ class _$PokemonEntityImpl extends _PokemonEntity {
 
   @override
   String toString() {
-    return 'PokemonEntity(id: $id, name: $name, avatar: $avatar, types: $types)';
+    return 'PokemonEntity(id: $id, name: $name, avatar: $avatar, heightInCm: $heightInCm, weightInKg: $weightInKg, types: $types)';
   }
 
   @override
@@ -160,12 +200,16 @@ class _$PokemonEntityImpl extends _PokemonEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.heightInCm, heightInCm) ||
+                other.heightInCm == heightInCm) &&
+            (identical(other.weightInKg, weightInKg) ||
+                other.weightInKg == weightInKg) &&
             const DeepCollectionEquality().equals(other._types, _types));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, avatar,
-      const DeepCollectionEquality().hash(_types));
+  int get hashCode => Object.hash(runtimeType, id, name, avatar, heightInCm,
+      weightInKg, const DeepCollectionEquality().hash(_types));
 
   @JsonKey(ignore: true)
   @override
@@ -176,18 +220,24 @@ class _$PokemonEntityImpl extends _PokemonEntity {
 
 abstract class _PokemonEntity extends PokemonEntity {
   const factory _PokemonEntity(
-      {required final int id,
+      {required final String id,
       required final String name,
       final String? avatar,
+      required final int heightInCm,
+      required final double weightInKg,
       required final List<String> types}) = _$PokemonEntityImpl;
   const _PokemonEntity._() : super._();
 
   @override
-  int get id;
+  String get id;
   @override
   String get name;
   @override
   String? get avatar;
+  @override
+  int get heightInCm;
+  @override
+  double get weightInKg;
   @override
   List<String> get types;
   @override

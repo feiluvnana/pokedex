@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_/core/widgets.dart';
 import 'package:test_/data/sources/api/pokenews_api.dart';
 import 'package:test_/domain/entities/poke_news_entity.dart';
 import 'package:test_/domain/providers/poke_news_provider.dart';
@@ -80,14 +81,8 @@ class _PokemonNewsSectionState extends ConsumerState<_PokemonNewsSection> {
                     padding: EdgeInsets.all(8.0),
                     child: Text("No more Pokémon News."),
                   )),
-              newPageProgressIndicatorBuilder: (context) => Image.asset(
-                  "assets/images/pika_loader.gif",
-                  width: 50,
-                  height: 50),
-              firstPageProgressIndicatorBuilder: (context) => Image.asset(
-                  "assets/images/pika_loader.gif",
-                  width: 50,
-                  height: 50)))
+              newPageProgressIndicatorBuilder: (context) => tPikaLoader,
+              firstPageProgressIndicatorBuilder: (context) => tPikaLoader))
     ]);
   }
 }
