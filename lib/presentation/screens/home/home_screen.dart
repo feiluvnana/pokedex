@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_/data/sources/api/pokenews_api.dart';
@@ -149,13 +148,15 @@ class _ButtonGridSection extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
-        OpenContainer(
-            closedElevation: 0,
-            closedBuilder: (context, action) => PokeFilledButton(
-                backgroundColor: Colors.teal,
-                onPressed: action,
-                child: const Row(children: [Text("Pokedex")])),
-            openBuilder: (context, _) => const PokedexScreen()),
+        PokeFilledButton(
+            backgroundColor: Colors.teal,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PokedexScreen()));
+            },
+            child: const Row(children: [Text("Pokedex")])),
         PokeFilledButton(
             backgroundColor: Colors.red,
             onPressed: () {},

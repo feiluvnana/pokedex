@@ -124,13 +124,14 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PokemonEntityImpl implements _PokemonEntity {
+class _$PokemonEntityImpl extends _PokemonEntity {
   const _$PokemonEntityImpl(
       {required this.id,
       required this.name,
       this.avatar,
       required final List<String> types})
-      : _types = types;
+      : _types = types,
+        super._();
 
   @override
   final int id;
@@ -173,12 +174,13 @@ class _$PokemonEntityImpl implements _PokemonEntity {
       __$$PokemonEntityImplCopyWithImpl<_$PokemonEntityImpl>(this, _$identity);
 }
 
-abstract class _PokemonEntity implements PokemonEntity {
+abstract class _PokemonEntity extends PokemonEntity {
   const factory _PokemonEntity(
       {required final int id,
       required final String name,
       final String? avatar,
       required final List<String> types}) = _$PokemonEntityImpl;
+  const _PokemonEntity._() : super._();
 
   @override
   int get id;

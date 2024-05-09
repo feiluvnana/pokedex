@@ -93,7 +93,9 @@ class _PokemonListSection extends StatelessWidget {
           showNewPageProgressIndicatorAsGridChild: false,
           pagingController: pagingController,
           builderDelegate: PagedChildBuilderDelegate(
-              itemBuilder: (context, item, index) => PokedexCard(item),
+              itemBuilder: (context, item, index) => PokedexCard(item,
+                  currentIndex: index,
+                  entities: pagingController.value.itemList ?? []),
               noMoreItemsIndicatorBuilder: (context) => const Center(
                       child: Padding(
                     padding: EdgeInsets.all(8.0),
