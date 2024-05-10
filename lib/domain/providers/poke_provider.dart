@@ -3,6 +3,7 @@ import 'package:test_/core/extensions.dart';
 import 'package:test_/data/repositories/poke_repository_impl.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/domain/entities/pokemon_species_entity.dart';
+import 'package:test_/domain/entities/pokemon_types_entity.dart';
 
 final getPokemonsProvider =
     FutureProvider.autoDispose.family<List<PokemonEntity>, int>((ref, page) {
@@ -13,5 +14,15 @@ final getPokemonsProvider =
 final getPokemonSpeciesProvider = FutureProvider.autoDispose
     .family<PokemonSpeciesEntity, String>((ref, name) {
   ref.cacheFor(const Duration(minutes: 1));
-  return ref.watch(pokeRepositoryProvider).readPokemonSpecies(name: name);
+  return ref
+      .watch(pokeRepositoryProvider)
+      .readPokemonSpecies(name: name.toLowerCase());
+});
+
+final getPokemonTypesProvider = FutureProvider.autoDispose
+    .family<PokemonTypesEntity, List<String>>((ref, types) {
+  ref.cacheFor(const Duration(minutes: 1));
+  return ref
+      .watch(pokeRepositoryProvider)
+      .readPokemonTypes(types: types.map((e) => e.toLowerCase()).toList());
 });

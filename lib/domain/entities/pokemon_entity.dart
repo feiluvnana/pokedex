@@ -12,5 +12,6 @@ class PokemonEntity with _$PokemonEntity {
       String? avatar,
       required int heightInCm,
       required double weightInKg,
-      required List<String> types}) = _PokemonEntity;
+      required List<String> types,
+      required List<(String name, int value)> stats}) = _PokemonEntity;
 }

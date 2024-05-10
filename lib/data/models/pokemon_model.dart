@@ -7,14 +7,15 @@ part "pokemon_model.g.dart";
 
 @freezed
 class PokemonModel with _$PokemonModel {
-  const factory PokemonModel({
-    required int id,
-    required String name,
-    required int weight,
-    required int height,
-    @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
-    @_TypesConverter() required List<String> types,
-  }) = _PokemonModel;
+  const factory PokemonModel(
+          {required int id,
+          required String name,
+          required int weight,
+          required int height,
+          @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
+          @_TypesConverter() required List<String> types,
+          @_StatsConverter() required List<(String name, int value)> stats}) =
+      _PokemonModel;
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) =>
       _$PokemonModelFromJson(json);
@@ -44,6 +45,26 @@ class _TypesConverter extends JsonConverter<List<String>, List<dynamic>> {
 
   @override
   List toJson(List<String> object) {
+    throw UnimplementedError();
+  }
+}
+
+class _StatsConverter
+    extends JsonConverter<List<(String name, int value)>, List<dynamic>> {
+  const _StatsConverter();
+
+  @override
+  List<(String, int)> fromJson(List json) {
+    return json
+        .map((e) => (
+              e["stat"]["name"].toString(),
+              int.parse(e["base_stat"].toString())
+            ))
+        .toList();
+  }
+
+  @override
+  List toJson(List<(String, int)> object) {
     throw UnimplementedError();
   }
 }

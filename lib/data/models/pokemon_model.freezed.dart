@@ -29,6 +29,8 @@ mixin _$PokemonModel {
   String? get avatar => throw _privateConstructorUsedError;
   @_TypesConverter()
   List<String> get types => throw _privateConstructorUsedError;
+  @_StatsConverter()
+  List<(String, int)> get stats => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,8 @@ abstract class $PokemonModelCopyWith<$Res> {
       int weight,
       int height,
       @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
-      @_TypesConverter() List<String> types});
+      @_TypesConverter() List<String> types,
+      @_StatsConverter() List<(String, int)> stats});
 }
 
 /// @nodoc
@@ -70,6 +73,7 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
     Object? height = null,
     Object? avatar = freezed,
     Object? types = null,
+    Object? stats = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -96,6 +100,10 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      stats: null == stats
+          ? _value.stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as List<(String, int)>,
     ) as $Val);
   }
 }
@@ -114,7 +122,8 @@ abstract class _$$PokemonModelImplCopyWith<$Res>
       int weight,
       int height,
       @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
-      @_TypesConverter() List<String> types});
+      @_TypesConverter() List<String> types,
+      @_StatsConverter() List<(String, int)> stats});
 }
 
 /// @nodoc
@@ -134,6 +143,7 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
     Object? height = null,
     Object? avatar = freezed,
     Object? types = null,
+    Object? stats = null,
   }) {
     return _then(_$PokemonModelImpl(
       id: null == id
@@ -160,6 +170,10 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      stats: null == stats
+          ? _value._stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as List<(String, int)>,
     ));
   }
 }
@@ -173,8 +187,10 @@ class _$PokemonModelImpl implements _PokemonModel {
       required this.weight,
       required this.height,
       @JsonKey(name: "sprites") @_AvatarConverter() this.avatar,
-      @_TypesConverter() required final List<String> types})
-      : _types = types;
+      @_TypesConverter() required final List<String> types,
+      @_StatsConverter() required final List<(String, int)> stats})
+      : _types = types,
+        _stats = stats;
 
   factory _$PokemonModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonModelImplFromJson(json);
@@ -200,9 +216,18 @@ class _$PokemonModelImpl implements _PokemonModel {
     return EqualUnmodifiableListView(_types);
   }
 
+  final List<(String, int)> _stats;
+  @override
+  @_StatsConverter()
+  List<(String, int)> get stats {
+    if (_stats is EqualUnmodifiableListView) return _stats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stats);
+  }
+
   @override
   String toString() {
-    return 'PokemonModel(id: $id, name: $name, weight: $weight, height: $height, avatar: $avatar, types: $types)';
+    return 'PokemonModel(id: $id, name: $name, weight: $weight, height: $height, avatar: $avatar, types: $types, stats: $stats)';
   }
 
   @override
@@ -215,13 +240,21 @@ class _$PokemonModelImpl implements _PokemonModel {
             (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
-            const DeepCollectionEquality().equals(other._types, _types));
+            const DeepCollectionEquality().equals(other._types, _types) &&
+            const DeepCollectionEquality().equals(other._stats, _stats));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, weight, height, avatar,
-      const DeepCollectionEquality().hash(_types));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      weight,
+      height,
+      avatar,
+      const DeepCollectionEquality().hash(_types),
+      const DeepCollectionEquality().hash(_stats));
 
   @JsonKey(ignore: true)
   @override
@@ -244,7 +277,8 @@ abstract class _PokemonModel implements PokemonModel {
           required final int weight,
           required final int height,
           @JsonKey(name: "sprites") @_AvatarConverter() final String? avatar,
-          @_TypesConverter() required final List<String> types}) =
+          @_TypesConverter() required final List<String> types,
+          @_StatsConverter() required final List<(String, int)> stats}) =
       _$PokemonModelImpl;
 
   factory _PokemonModel.fromJson(Map<String, dynamic> json) =
@@ -265,6 +299,9 @@ abstract class _PokemonModel implements PokemonModel {
   @override
   @_TypesConverter()
   List<String> get types;
+  @override
+  @_StatsConverter()
+  List<(String, int)> get stats;
   @override
   @JsonKey(ignore: true)
   _$$PokemonModelImplCopyWith<_$PokemonModelImpl> get copyWith =>

@@ -4,18 +4,31 @@ import 'package:flutter/material.dart';
 final tLightTheme = FlexThemeData.light(
         scheme: FlexScheme.blueM3,
         textTheme: Typography.blackRedmond.copyWith(
-            titleSmall: Typography.blackRedmond.titleSmall
-                ?.copyWith(fontWeight: FontWeight.bold),
-            titleMedium: Typography.blackRedmond.titleMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
-            titleLarge: Typography.blackRedmond.titleLarge
-                ?.copyWith(fontWeight: FontWeight.bold)),
+          titleSmall: Typography.blackRedmond.titleSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+          titleMedium: Typography.blackRedmond.titleMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          titleLarge: Typography.blackRedmond.titleLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
+          labelSmall: Typography.blackRedmond.labelSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+          labelMedium: Typography.blackRedmond.labelMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          labelLarge: Typography.blackRedmond.labelLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
         primaryTextTheme: Typography.blackRedmond.copyWith(
             titleSmall: Typography.blackRedmond.titleSmall
                 ?.copyWith(fontWeight: FontWeight.bold),
             titleMedium: Typography.blackRedmond.titleMedium
                 ?.copyWith(fontWeight: FontWeight.bold),
             titleLarge: Typography.blackRedmond.titleLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+            labelSmall: Typography.blackRedmond.labelSmall
+                ?.copyWith(fontWeight: FontWeight.bold),
+            labelMedium: Typography.blackRedmond.labelMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
+            labelLarge: Typography.blackRedmond.labelLarge
                 ?.copyWith(fontWeight: FontWeight.bold)),
         subThemesData: const FlexSubThemesData(),
         useMaterial3: true)
@@ -25,7 +38,8 @@ final tLightTheme = FlexThemeData.light(
             iconTheme: IconThemeData(size: tIconSize)),
         iconTheme: const IconThemeData(size: tIconSize),
         iconButtonTheme: IconButtonThemeData(
-            style: IconButton.styleFrom(padding: const EdgeInsets.all(tIconButtonPadding))));
+            style: IconButton.styleFrom(
+                padding: const EdgeInsets.all(tIconButtonPadding))));
 
 const tIconButtonPadding = 8.0;
 const tIconSize = 24.0;

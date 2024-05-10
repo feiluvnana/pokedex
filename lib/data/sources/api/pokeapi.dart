@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:test_/data/models/pokemon_model.dart';
 import 'package:test_/data/models/pokemon_species_model.dart';
+import 'package:test_/data/models/pokemon_types_model.dart';
 
 part "pokeapi.freezed.dart";
 part 'pokeapi.g.dart';
@@ -27,6 +28,9 @@ abstract class PokeApi {
 
   @GET('/pokemon-species/{name}')
   Future<PokemonSpeciesModel> getPokemonSpecies(@Path("name") String name);
+
+  @GET('/type/{name}')
+  Future<PokemonTypesModel> getType(@Path("name") String name);
 }
 
 final pokeApiProvider = Provider((ref) => PokeApi(Dio()));
@@ -60,4 +64,10 @@ PokemonModel deserializePokemonModel(Map<String, dynamic> json) =>
     PokemonModel.fromJson(json);
 
 Map<String, dynamic> serializePokemonModel(PokemonModel model) =>
+    model.toJson();
+
+PokemonTypesModel deserializePokemonTypesModel(Map<String, dynamic> json) =>
+    PokemonTypesModel.fromJson(json);
+
+Map<String, dynamic> serializePokemonTypesModel(PokemonTypesModel model) =>
     model.toJson();
