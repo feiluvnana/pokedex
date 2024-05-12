@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_/core/colors.dart';
+import 'package:test_/core/constant.dart';
 
 class TypeChip extends StatelessWidget {
   final String label;

@@ -38,3 +38,34 @@ const tEggGroupColor = {
   "Dragon": Color(0xFF7A42FF),
   "No-eggs": Color(0xFF333333)
 };
+
+const tGenerationColor = {
+  "I": Color(0xFF80BB1D),
+  "II": Color(0xFFCAC02e),
+  "III": Color(0xFF68C1AB),
+  "IV": Color(0xFF9072AB),
+  "V": Color(0xFF6BAECE),
+  "VI": Color(0xFFCB0B4F),
+  "VII": Color(0xFFDC5A40),
+  "VIII": Color(0xFFAC379E),
+  "IX": Color(0xFFE19F3E),
+};
+
+const tStatsText = {
+  "hp": "❤️ HP",
+  "attack": "⚔️ ATK",
+  "defense": "🛡️ DEF",
+  "special-attack": "🗡️ Sp.ATK",
+  "special-defense": "🔰 Sp.DEF",
+  "speed": "🎿 SPD",
+  "accuracy": "🎯 ACC",
+  "evasion": "🪽 EVD",
+  "total": "➕ Total"
+};
+
+const tIconButtonPadding = 8.0;
+const tIconSize = 24.0;
+final tPikaLoader =
+    Image.asset("assets/images/pika_loader.gif", width: 50, height: 50);
+
+const tPokeApiPaginationLimit = 10;

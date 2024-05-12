@@ -14,7 +14,10 @@ class PokemonSpeciesModel with _$PokemonSpeciesModel {
       @JsonKey(name: "gender_rate") required int genderRate,
       @JsonKey(name: "flavor_text_entries")
       @_DescriptionConverter()
-      required String description}) = _PokemonSpeciesModel;
+      required String description,
+      @JsonKey(name: "evolution_chain")
+      @_EvolutionChainUrlConverter()
+      required String evolutionChainUrl}) = _PokemonSpeciesModel;
 
   factory PokemonSpeciesModel.fromJson(Map<String, dynamic> json) =>
       _$PokemonSpeciesModelFromJson(json);
@@ -30,6 +33,21 @@ class _EggGroupsConverter extends JsonConverter<List<String>, List<dynamic>> {
 
   @override
   List toJson(List<String> object) {
+    throw UnimplementedError();
+  }
+}
+
+class _EvolutionChainUrlConverter
+    extends JsonConverter<String, Map<String, dynamic>> {
+  const _EvolutionChainUrlConverter();
+
+  @override
+  String fromJson(Map<String, dynamic> json) {
+    return json["url"];
+  }
+
+  @override
+  Map<String, dynamic> toJson(String object) {
     throw UnimplementedError();
   }
 }

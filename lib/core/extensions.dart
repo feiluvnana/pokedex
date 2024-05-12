@@ -6,12 +6,16 @@ extension RefExt on AutoDisposeRef {
   void cacheFor(Duration duration) {
     final link = keepAlive();
     Timer? timer;
-
-    onCancel(() {
-      timer = Timer(duration, link.close);
-    });
-
+    onCancel(() => timer = Timer(duration, link.close));
     onResume(() => timer?.cancel());
     onDispose(() => timer?.cancel());
   }
+}
+
+extension StringIterExt on Iterable<String> {
+  Iterable<String> mapFirstLetterUpper() => map((e) => e.firstLetterUpper());
+}
+
+extension StringExt on String {
+  String firstLetterUpper() => "${this[0].toUpperCase()}${substring(1)}";
 }

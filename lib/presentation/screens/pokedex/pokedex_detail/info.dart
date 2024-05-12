@@ -32,14 +32,42 @@ class _InfoPanelSectionState extends State<_InfoPanelSection>
           ],
         ),
         Expanded(
-          child: TabBarView(controller: tabController, children: [
-            _aboutTab(),
-            _baseStatsTab(),
-            const Text("3"),
-            const Text("4")
-          ]),
-        )
+            child: TabBarView(controller: tabController, children: [
+          SingleChildScrollView(child: _aboutTab()),
+          SingleChildScrollView(child: _baseStatsTab()),
+          SingleChildScrollView(child: _evolutionTab()),
+          SingleChildScrollView(child: _skillTab())
+        ])),
       ],
+    );
+  }
+
+  Widget _skillTab() {
+    final textTheme = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Abilities", style: textTheme.titleSmall),
+          _InfoPanelAbilitySection(currentPokemon: widget.currentPokemon),
+          Text("Moves", style: textTheme.titleSmall),
+          _InfoPanelMoveSection(currentPokemon: widget.currentPokemon),
+        ],
+      ),
+    );
+  }
+
+  Widget _evolutionTab() {
+    // final textTheme = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _InfoPanelEvolutionChainSection(currentPokemon: widget.currentPokemon)
+        ],
+      ),
     );
   }
 

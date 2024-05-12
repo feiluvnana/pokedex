@@ -29,6 +29,10 @@ mixin _$PokemonModel {
   String? get avatar => throw _privateConstructorUsedError;
   @_TypesConverter()
   List<String> get types => throw _privateConstructorUsedError;
+  @_AbilitiesConverter()
+  List<String> get abilities => throw _privateConstructorUsedError;
+  @_MovesConverter()
+  List<String> get moves => throw _privateConstructorUsedError;
   @_StatsConverter()
   List<(String, int)> get stats => throw _privateConstructorUsedError;
 
@@ -51,6 +55,8 @@ abstract class $PokemonModelCopyWith<$Res> {
       int height,
       @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
       @_TypesConverter() List<String> types,
+      @_AbilitiesConverter() List<String> abilities,
+      @_MovesConverter() List<String> moves,
       @_StatsConverter() List<(String, int)> stats});
 }
 
@@ -73,6 +79,8 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
     Object? height = null,
     Object? avatar = freezed,
     Object? types = null,
+    Object? abilities = null,
+    Object? moves = null,
     Object? stats = null,
   }) {
     return _then(_value.copyWith(
@@ -100,6 +108,14 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      abilities: null == abilities
+          ? _value.abilities
+          : abilities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      moves: null == moves
+          ? _value.moves
+          : moves // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       stats: null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -123,6 +139,8 @@ abstract class _$$PokemonModelImplCopyWith<$Res>
       int height,
       @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
       @_TypesConverter() List<String> types,
+      @_AbilitiesConverter() List<String> abilities,
+      @_MovesConverter() List<String> moves,
       @_StatsConverter() List<(String, int)> stats});
 }
 
@@ -143,6 +161,8 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
     Object? height = null,
     Object? avatar = freezed,
     Object? types = null,
+    Object? abilities = null,
+    Object? moves = null,
     Object? stats = null,
   }) {
     return _then(_$PokemonModelImpl(
@@ -170,6 +190,14 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      abilities: null == abilities
+          ? _value._abilities
+          : abilities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      moves: null == moves
+          ? _value._moves
+          : moves // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       stats: null == stats
           ? _value._stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -188,8 +216,12 @@ class _$PokemonModelImpl implements _PokemonModel {
       required this.height,
       @JsonKey(name: "sprites") @_AvatarConverter() this.avatar,
       @_TypesConverter() required final List<String> types,
+      @_AbilitiesConverter() required final List<String> abilities,
+      @_MovesConverter() required final List<String> moves,
       @_StatsConverter() required final List<(String, int)> stats})
       : _types = types,
+        _abilities = abilities,
+        _moves = moves,
         _stats = stats;
 
   factory _$PokemonModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -216,6 +248,24 @@ class _$PokemonModelImpl implements _PokemonModel {
     return EqualUnmodifiableListView(_types);
   }
 
+  final List<String> _abilities;
+  @override
+  @_AbilitiesConverter()
+  List<String> get abilities {
+    if (_abilities is EqualUnmodifiableListView) return _abilities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_abilities);
+  }
+
+  final List<String> _moves;
+  @override
+  @_MovesConverter()
+  List<String> get moves {
+    if (_moves is EqualUnmodifiableListView) return _moves;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_moves);
+  }
+
   final List<(String, int)> _stats;
   @override
   @_StatsConverter()
@@ -227,7 +277,7 @@ class _$PokemonModelImpl implements _PokemonModel {
 
   @override
   String toString() {
-    return 'PokemonModel(id: $id, name: $name, weight: $weight, height: $height, avatar: $avatar, types: $types, stats: $stats)';
+    return 'PokemonModel(id: $id, name: $name, weight: $weight, height: $height, avatar: $avatar, types: $types, abilities: $abilities, moves: $moves, stats: $stats)';
   }
 
   @override
@@ -241,6 +291,9 @@ class _$PokemonModelImpl implements _PokemonModel {
             (identical(other.height, height) || other.height == height) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             const DeepCollectionEquality().equals(other._types, _types) &&
+            const DeepCollectionEquality()
+                .equals(other._abilities, _abilities) &&
+            const DeepCollectionEquality().equals(other._moves, _moves) &&
             const DeepCollectionEquality().equals(other._stats, _stats));
   }
 
@@ -254,6 +307,8 @@ class _$PokemonModelImpl implements _PokemonModel {
       height,
       avatar,
       const DeepCollectionEquality().hash(_types),
+      const DeepCollectionEquality().hash(_abilities),
+      const DeepCollectionEquality().hash(_moves),
       const DeepCollectionEquality().hash(_stats));
 
   @JsonKey(ignore: true)
@@ -278,6 +333,8 @@ abstract class _PokemonModel implements PokemonModel {
           required final int height,
           @JsonKey(name: "sprites") @_AvatarConverter() final String? avatar,
           @_TypesConverter() required final List<String> types,
+          @_AbilitiesConverter() required final List<String> abilities,
+          @_MovesConverter() required final List<String> moves,
           @_StatsConverter() required final List<(String, int)> stats}) =
       _$PokemonModelImpl;
 
@@ -299,6 +356,12 @@ abstract class _PokemonModel implements PokemonModel {
   @override
   @_TypesConverter()
   List<String> get types;
+  @override
+  @_AbilitiesConverter()
+  List<String> get abilities;
+  @override
+  @_MovesConverter()
+  List<String> get moves;
   @override
   @_StatsConverter()
   List<(String, int)> get stats;

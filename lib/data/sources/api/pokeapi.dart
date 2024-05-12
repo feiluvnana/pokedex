@@ -7,6 +7,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:test_/core/constant.dart';
+import 'package:test_/data/models/ability_model.dart';
+import 'package:test_/data/models/evolution_chain_model.dart';
 import 'package:test_/data/models/pokemon_model.dart';
 import 'package:test_/data/models/pokemon_species_model.dart';
 import 'package:test_/data/models/pokemon_types_model.dart';
@@ -14,7 +17,7 @@ import 'package:test_/data/models/pokemon_types_model.dart';
 part "pokeapi.freezed.dart";
 part 'pokeapi.g.dart';
 
-@RestApi(baseUrl: "https://pokeapi.co/api/v2/", parser: Parser.FlutterCompute)
+@RestApi(baseUrl: "https://pokeapi.co/api/v2", parser: Parser.FlutterCompute)
 abstract class PokeApi {
   factory PokeApi(Dio dio, {String baseUrl}) = _PokeApi;
 
@@ -31,11 +34,15 @@ abstract class PokeApi {
 
   @GET('/type/{name}')
   Future<PokemonTypesModel> getType(@Path("name") String name);
+
+  @GET('/evolution-chain/{id}')
+  Future<EvolutionChainModel> getEvolutionChain(@Path("id") String id);
+
+  @GET('/ability/{name}')
+  Future<AbilityModel> getAbility(@Path("name") String name);
 }
 
 final pokeApiProvider = Provider((ref) => PokeApi(Dio()));
-
-const tPokeApiPaginationLimit = 10;
 
 @freezed
 class PaginationResponseData with _$PaginationResponseData {
@@ -45,6 +52,18 @@ class PaginationResponseData with _$PaginationResponseData {
   factory PaginationResponseData.fromJson(Map<String, dynamic> json) =>
       _$PaginationResponseDataFromJson(json);
 }
+
+EvolutionChainModel deserializeEvolutionChainModel(Map<String, dynamic> json) =>
+    EvolutionChainModel.fromJson(json);
+
+Map<String, dynamic> serializeEvolutionChainModel(EvolutionChainModel model) =>
+    model.toJson();
+
+AbilityModel deserializeAbilityModel(Map<String, dynamic> json) =>
+    AbilityModel.fromJson(json);
+
+Map<String, dynamic> serializeAbilityModel(AbilityModel model) =>
+    model.toJson();
 
 PokemonSpeciesModel deserializePokemonSpeciesModel(Map<String, dynamic> json) =>
     PokemonSpeciesModel.fromJson(json);

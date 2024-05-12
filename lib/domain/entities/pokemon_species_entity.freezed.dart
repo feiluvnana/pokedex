@@ -19,6 +19,7 @@ mixin _$PokemonSpeciesEntity {
   List<String> get eggGroups => throw _privateConstructorUsedError;
   double get maleInPercentage => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get evolutionChainId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PokemonSpeciesEntityCopyWith<PokemonSpeciesEntity> get copyWith =>
@@ -32,7 +33,10 @@ abstract class $PokemonSpeciesEntityCopyWith<$Res> {
       _$PokemonSpeciesEntityCopyWithImpl<$Res, PokemonSpeciesEntity>;
   @useResult
   $Res call(
-      {List<String> eggGroups, double maleInPercentage, String description});
+      {List<String> eggGroups,
+      double maleInPercentage,
+      String description,
+      String evolutionChainId});
 }
 
 /// @nodoc
@@ -52,6 +56,7 @@ class _$PokemonSpeciesEntityCopyWithImpl<$Res,
     Object? eggGroups = null,
     Object? maleInPercentage = null,
     Object? description = null,
+    Object? evolutionChainId = null,
   }) {
     return _then(_value.copyWith(
       eggGroups: null == eggGroups
@@ -66,6 +71,10 @@ class _$PokemonSpeciesEntityCopyWithImpl<$Res,
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      evolutionChainId: null == evolutionChainId
+          ? _value.evolutionChainId
+          : evolutionChainId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -79,7 +88,10 @@ abstract class _$$PokemonSpeciesEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<String> eggGroups, double maleInPercentage, String description});
+      {List<String> eggGroups,
+      double maleInPercentage,
+      String description,
+      String evolutionChainId});
 }
 
 /// @nodoc
@@ -96,6 +108,7 @@ class __$$PokemonSpeciesEntityImplCopyWithImpl<$Res>
     Object? eggGroups = null,
     Object? maleInPercentage = null,
     Object? description = null,
+    Object? evolutionChainId = null,
   }) {
     return _then(_$PokemonSpeciesEntityImpl(
       eggGroups: null == eggGroups
@@ -110,6 +123,10 @@ class __$$PokemonSpeciesEntityImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      evolutionChainId: null == evolutionChainId
+          ? _value.evolutionChainId
+          : evolutionChainId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -120,7 +137,8 @@ class _$PokemonSpeciesEntityImpl extends _PokemonSpeciesEntity {
   const _$PokemonSpeciesEntityImpl(
       {required final List<String> eggGroups,
       required this.maleInPercentage,
-      required this.description})
+      required this.description,
+      required this.evolutionChainId})
       : _eggGroups = eggGroups,
         super._();
 
@@ -136,10 +154,12 @@ class _$PokemonSpeciesEntityImpl extends _PokemonSpeciesEntity {
   final double maleInPercentage;
   @override
   final String description;
+  @override
+  final String evolutionChainId;
 
   @override
   String toString() {
-    return 'PokemonSpeciesEntity(eggGroups: $eggGroups, maleInPercentage: $maleInPercentage, description: $description)';
+    return 'PokemonSpeciesEntity(eggGroups: $eggGroups, maleInPercentage: $maleInPercentage, description: $description, evolutionChainId: $evolutionChainId)';
   }
 
   @override
@@ -152,7 +172,9 @@ class _$PokemonSpeciesEntityImpl extends _PokemonSpeciesEntity {
             (identical(other.maleInPercentage, maleInPercentage) ||
                 other.maleInPercentage == maleInPercentage) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.evolutionChainId, evolutionChainId) ||
+                other.evolutionChainId == evolutionChainId));
   }
 
   @override
@@ -160,7 +182,8 @@ class _$PokemonSpeciesEntityImpl extends _PokemonSpeciesEntity {
       runtimeType,
       const DeepCollectionEquality().hash(_eggGroups),
       maleInPercentage,
-      description);
+      description,
+      evolutionChainId);
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +198,8 @@ abstract class _PokemonSpeciesEntity extends PokemonSpeciesEntity {
   const factory _PokemonSpeciesEntity(
       {required final List<String> eggGroups,
       required final double maleInPercentage,
-      required final String description}) = _$PokemonSpeciesEntityImpl;
+      required final String description,
+      required final String evolutionChainId}) = _$PokemonSpeciesEntityImpl;
   const _PokemonSpeciesEntity._() : super._();
 
   @override
@@ -184,6 +208,8 @@ abstract class _PokemonSpeciesEntity extends PokemonSpeciesEntity {
   double get maleInPercentage;
   @override
   String get description;
+  @override
+  String get evolutionChainId;
   @override
   @JsonKey(ignore: true)
   _$$PokemonSpeciesEntityImplCopyWith<_$PokemonSpeciesEntityImpl>

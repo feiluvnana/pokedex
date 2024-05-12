@@ -16,5 +16,6 @@ class PokemonSpeciesEntity with _$PokemonSpeciesEntity {
   const factory PokemonSpeciesEntity(
       {required List<String> eggGroups,
       required double maleInPercentage,
-      required String description}) = _PokemonSpeciesEntity;
+      required String description,
+      required String evolutionChainId}) = _PokemonSpeciesEntity;
 }

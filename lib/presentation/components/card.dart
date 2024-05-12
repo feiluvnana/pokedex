@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:test_/core/colors.dart';
+import 'package:test_/core/constant.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/presentation/components/chip.dart';
 import 'package:test_/presentation/screens/pokedex/pokedex_detail/pokedex_detail_screen.dart';

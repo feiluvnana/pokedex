@@ -1,5 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_/core/constant.dart';
+import 'package:test_/core/extensions.dart';
+import 'package:test_/data/models/evolution_chain_model.dart';
+import 'package:test_/data/models/pokemon_model.dart';
 import 'package:test_/data/sources/api/pokeapi.dart';
+import 'package:test_/domain/entities/evolution_chain_entity.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/domain/entities/pokemon_species_entity.dart';
 import 'package:test_/domain/entities/pokemon_types_entity.dart';
@@ -13,6 +18,8 @@ abstract class PokeRepository {
   Future<PokemonSpeciesEntity> readPokemonSpecies({required String name});
 
   Future<PokemonTypesEntity> readPokemonTypes({required List<String> types});
+
+  Future<EvolutionChainEntity> readEvolutionChain({required String id});
 }
 
 class NewsRepositoryImpl extends PokeRepository {
@@ -25,45 +32,37 @@ class NewsRepositoryImpl extends PokeRepository {
         .getPokemonsPaginationData((page - 1) * tPokeApiPaginationLimit);
     return Future.wait(paginationData.results.map((e) => client
         .getPokemon(e["name"])
-        .then((model) => PokemonEntity(
-                id: "#${model.id.toString().padLeft(4, "0")}",
-                name:
-                    "${model.name[0].toUpperCase()}${model.name.substring(1)}",
-                types: model.types
-                    .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
-                    .toList(),
-                avatar: model.avatar,
-                heightInCm: model.height * 10,
-                weightInKg: model.weight / 10,
-                stats: [
-                  ...model.stats.map((e) => (
-                        {
-                          "hp": "❤️ HP",
-                          "attack": "⚔️ ATK",
-                          "defense": "🛡️ DEF",
-                          "special-attack": "🗡️ Sp.ATK",
-                          "special-defense": "🔰 Sp.DEF",
-                          "speed": "🎿 SPD",
-                          "accuracy": "🎯 ACC",
-                          "evasion": "🪽 EVD"
-                        }[e.$1]!,
-                        e.$2
-                      )),
-                  model.stats.reduce((a, b) => ("➕ Total", a.$2 + b.$2))
-                ]))));
+        .then((model) => _pokemonModelToPokemonEntity(model))));
+  }
+
+  PokemonEntity _pokemonModelToPokemonEntity(PokemonModel model) {
+    return PokemonEntity(
+        id: "#${model.id.toString().padLeft(4, "0")}",
+        name: model.name.firstLetterUpper(),
+        types: model.types.mapFirstLetterUpper().toList(),
+        avatar: model.avatar,
+        heightInCm: model.height * 10,
+        weightInKg: model.weight / 10,
+        moves: model.moves.mapFirstLetterUpper().toList(),
+        abilities: model.abilities.mapFirstLetterUpper().toList(),
+        stats: [
+          ...model.stats.map((e) => (tStatsText[e.$1]!, e.$2)),
+          model.stats.reduce((a, b) => (tStatsText["total"]!, a.$2 + b.$2))
+        ]);
   }
 
   @override
   Future<PokemonSpeciesEntity> readPokemonSpecies(
       {required String name}) async {
     return client.getPokemonSpecies(name).then((model) => PokemonSpeciesEntity(
-        eggGroups: model.eggGroups
-            .map((e) => "${e[0].toUpperCase()}${e.substring(1)}")
-            .toList(),
+        eggGroups: model.eggGroups.mapFirstLetterUpper().toList(),
         maleInPercentage: model.genderRate == -1
             ? model.genderRate.toDouble()
             : 12.5 * (8 - model.genderRate),
-        description: model.description));
+        description: model.description,
+        evolutionChainId: model.evolutionChainUrl
+            .split("/")
+            .elementAt(model.evolutionChainUrl.split("/").length - 2)));
   }
 
   @override
@@ -74,7 +73,7 @@ class NewsRepositoryImpl extends PokeRepository {
     var defenseRelation = <(String, double)>[];
     for (var m in models) {
       for (var e in m.damageRelations.doubleDamageFrom) {
-        var currentType = "${e[0].toUpperCase()}${e.substring(1)}";
+        var currentType = e.firstLetterUpper();
         if (defenseRelation.any((e) => e.$1 == currentType)) {
           var currentValue =
               defenseRelation.firstWhere((e) => e.$1 == currentType);
@@ -85,7 +84,7 @@ class NewsRepositoryImpl extends PokeRepository {
         }
       }
       for (var e in m.damageRelations.halfDamageFrom) {
-        var currentType = "${e[0].toUpperCase()}${e.substring(1)}";
+        var currentType = e.firstLetterUpper();
         if (defenseRelation.any((e) => e.$1 == currentType)) {
           var currentValue =
               defenseRelation.firstWhere((e) => e.$1 == currentType);
@@ -96,7 +95,7 @@ class NewsRepositoryImpl extends PokeRepository {
         }
       }
       for (var e in m.damageRelations.noDamageFrom) {
-        var currentType = "${e[0].toUpperCase()}${e.substring(1)}";
+        var currentType = e.firstLetterUpper();
         if (defenseRelation.any((e) => e.$1 == currentType)) {
           var currentValue =
               defenseRelation.firstWhere((e) => e.$1 == currentType);
@@ -107,7 +106,7 @@ class NewsRepositoryImpl extends PokeRepository {
         }
       }
       for (var e in m.damageRelations.doubleDamageTo) {
-        var currentType = "${e[0].toUpperCase()}${e.substring(1)}";
+        var currentType = e.firstLetterUpper();
         if (attackRelation.any((e) => e.$1 == currentType)) {
           var currentValue =
               attackRelation.firstWhere((e) => e.$1 == currentType);
@@ -118,7 +117,7 @@ class NewsRepositoryImpl extends PokeRepository {
         }
       }
       for (var e in m.damageRelations.halfDamageTo) {
-        var currentType = "${e[0].toUpperCase()}${e.substring(1)}";
+        var currentType = e.firstLetterUpper();
         if (attackRelation.any((e) => e.$1 == currentType)) {
           var currentValue =
               attackRelation.firstWhere((e) => e.$1 == currentType);
@@ -129,7 +128,7 @@ class NewsRepositoryImpl extends PokeRepository {
         }
       }
       for (var e in m.damageRelations.noDamageTo) {
-        var currentType = "${e[0].toUpperCase()}${e.substring(1)}";
+        var currentType = e.firstLetterUpper();
         if (attackRelation.any((e) => e.$1 == currentType)) {
           var currentValue =
               attackRelation.firstWhere((e) => e.$1 == currentType);
@@ -142,5 +141,21 @@ class NewsRepositoryImpl extends PokeRepository {
     }
     return PokemonTypesEntity(
         attackRelation: attackRelation, defenseRelation: defenseRelation);
+  }
+
+  @override
+  Future<EvolutionChainEntity> readEvolutionChain({required String id}) async {
+    final evolutionChainData = await client.getEvolutionChain(id);
+    return EvolutionChainEntity(
+        chain: await _chainModelToChainLink(evolutionChainData.chain));
+  }
+
+  Future<ChainLinkEntity> _chainModelToChainLink(ChainLinkModel model) async {
+    return ChainLinkEntity(
+        pokemon: _pokemonModelToPokemonEntity(
+            await client.getPokemon(model.pokemonName)),
+        evolvesTo: await Future.wait(model.evolvesTo
+            .map((e) async => _chainModelToChainLink(e))
+            .toList()));
   }
 }

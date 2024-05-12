@@ -14,6 +14,8 @@ _$PokemonSpeciesModelImpl _$$PokemonSpeciesModelImplFromJson(
       genderRate: (json['gender_rate'] as num).toInt(),
       description: const _DescriptionConverter()
           .fromJson(json['flavor_text_entries'] as List),
+      evolutionChainUrl: const _EvolutionChainUrlConverter()
+          .fromJson(json['evolution_chain'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PokemonSpeciesModelImplToJson(
@@ -23,4 +25,6 @@ Map<String, dynamic> _$$PokemonSpeciesModelImplToJson(
       'gender_rate': instance.genderRate,
       'flavor_text_entries':
           const _DescriptionConverter().toJson(instance.description),
+      'evolution_chain': const _EvolutionChainUrlConverter()
+          .toJson(instance.evolutionChainUrl),
     };

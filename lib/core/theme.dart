@@ -1,5 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:test_/core/constant.dart';
 
 final tLightTheme = FlexThemeData.light(
         scheme: FlexScheme.blueM3,
@@ -40,6 +41,3 @@ final tLightTheme = FlexThemeData.light(
         iconButtonTheme: IconButtonThemeData(
             style: IconButton.styleFrom(
                 padding: const EdgeInsets.all(tIconButtonPadding))));
-
-const tIconButtonPadding = 8.0;
-const tIconSize = 24.0;

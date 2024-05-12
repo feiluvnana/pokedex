@@ -29,7 +29,7 @@ class _PokeApi implements PokeApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://pokeapi.co/api/v2/';
+    baseUrl ??= 'https://pokeapi.co/api/v2';
   }
 
   final Dio _dio;
@@ -148,6 +148,60 @@ class _PokeApi implements PokeApi {
               baseUrl,
             ))));
     final value = await compute(deserializePokemonTypesModel, _result.data!);
+    return value;
+  }
+
+  @override
+  Future<EvolutionChainModel> getEvolutionChain(String id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<EvolutionChainModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/evolution-chain/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = await compute(deserializeEvolutionChainModel, _result.data!);
+    return value;
+  }
+
+  @override
+  Future<AbilityModel> getAbility(String name) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AbilityModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/ability/${name}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = await compute(deserializeAbilityModel, _result.data!);
     return value;
   }
 

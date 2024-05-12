@@ -28,6 +28,9 @@ mixin _$PokemonSpeciesModel {
   @JsonKey(name: "flavor_text_entries")
   @_DescriptionConverter()
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: "evolution_chain")
+  @_EvolutionChainUrlConverter()
+  String get evolutionChainUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +51,10 @@ abstract class $PokemonSpeciesModelCopyWith<$Res> {
       @JsonKey(name: "gender_rate") int genderRate,
       @JsonKey(name: "flavor_text_entries")
       @_DescriptionConverter()
-      String description});
+      String description,
+      @JsonKey(name: "evolution_chain")
+      @_EvolutionChainUrlConverter()
+      String evolutionChainUrl});
 }
 
 /// @nodoc
@@ -67,6 +73,7 @@ class _$PokemonSpeciesModelCopyWithImpl<$Res, $Val extends PokemonSpeciesModel>
     Object? eggGroups = null,
     Object? genderRate = null,
     Object? description = null,
+    Object? evolutionChainUrl = null,
   }) {
     return _then(_value.copyWith(
       eggGroups: null == eggGroups
@@ -80,6 +87,10 @@ class _$PokemonSpeciesModelCopyWithImpl<$Res, $Val extends PokemonSpeciesModel>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      evolutionChainUrl: null == evolutionChainUrl
+          ? _value.evolutionChainUrl
+          : evolutionChainUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -100,7 +111,10 @@ abstract class _$$PokemonSpeciesModelImplCopyWith<$Res>
       @JsonKey(name: "gender_rate") int genderRate,
       @JsonKey(name: "flavor_text_entries")
       @_DescriptionConverter()
-      String description});
+      String description,
+      @JsonKey(name: "evolution_chain")
+      @_EvolutionChainUrlConverter()
+      String evolutionChainUrl});
 }
 
 /// @nodoc
@@ -117,6 +131,7 @@ class __$$PokemonSpeciesModelImplCopyWithImpl<$Res>
     Object? eggGroups = null,
     Object? genderRate = null,
     Object? description = null,
+    Object? evolutionChainUrl = null,
   }) {
     return _then(_$PokemonSpeciesModelImpl(
       eggGroups: null == eggGroups
@@ -130,6 +145,10 @@ class __$$PokemonSpeciesModelImplCopyWithImpl<$Res>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      evolutionChainUrl: null == evolutionChainUrl
+          ? _value.evolutionChainUrl
+          : evolutionChainUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -145,7 +164,10 @@ class _$PokemonSpeciesModelImpl implements _PokemonSpeciesModel {
       @JsonKey(name: "gender_rate") required this.genderRate,
       @JsonKey(name: "flavor_text_entries")
       @_DescriptionConverter()
-      required this.description})
+      required this.description,
+      @JsonKey(name: "evolution_chain")
+      @_EvolutionChainUrlConverter()
+      required this.evolutionChainUrl})
       : _eggGroups = eggGroups;
 
   factory _$PokemonSpeciesModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -168,10 +190,14 @@ class _$PokemonSpeciesModelImpl implements _PokemonSpeciesModel {
   @JsonKey(name: "flavor_text_entries")
   @_DescriptionConverter()
   final String description;
+  @override
+  @JsonKey(name: "evolution_chain")
+  @_EvolutionChainUrlConverter()
+  final String evolutionChainUrl;
 
   @override
   String toString() {
-    return 'PokemonSpeciesModel(eggGroups: $eggGroups, genderRate: $genderRate, description: $description)';
+    return 'PokemonSpeciesModel(eggGroups: $eggGroups, genderRate: $genderRate, description: $description, evolutionChainUrl: $evolutionChainUrl)';
   }
 
   @override
@@ -184,13 +210,19 @@ class _$PokemonSpeciesModelImpl implements _PokemonSpeciesModel {
             (identical(other.genderRate, genderRate) ||
                 other.genderRate == genderRate) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.evolutionChainUrl, evolutionChainUrl) ||
+                other.evolutionChainUrl == evolutionChainUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_eggGroups), genderRate, description);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_eggGroups),
+      genderRate,
+      description,
+      evolutionChainUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +247,10 @@ abstract class _PokemonSpeciesModel implements PokemonSpeciesModel {
       @JsonKey(name: "gender_rate") required final int genderRate,
       @JsonKey(name: "flavor_text_entries")
       @_DescriptionConverter()
-      required final String description}) = _$PokemonSpeciesModelImpl;
+      required final String description,
+      @JsonKey(name: "evolution_chain")
+      @_EvolutionChainUrlConverter()
+      required final String evolutionChainUrl}) = _$PokemonSpeciesModelImpl;
 
   factory _PokemonSpeciesModel.fromJson(Map<String, dynamic> json) =
       _$PokemonSpeciesModelImpl.fromJson;
@@ -231,6 +266,10 @@ abstract class _PokemonSpeciesModel implements PokemonSpeciesModel {
   @JsonKey(name: "flavor_text_entries")
   @_DescriptionConverter()
   String get description;
+  @override
+  @JsonKey(name: "evolution_chain")
+  @_EvolutionChainUrlConverter()
+  String get evolutionChainUrl;
   @override
   @JsonKey(ignore: true)
   _$$PokemonSpeciesModelImplCopyWith<_$PokemonSpeciesModelImpl> get copyWith =>

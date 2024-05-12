@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/core/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:test_/core/constant.dart';
 import 'package:test_/data/sources/api/pokenews_api.dart';
 import 'package:test_/domain/entities/poke_news_entity.dart';
 import 'package:test_/domain/providers/poke_news_provider.dart';
@@ -12,6 +13,7 @@ import 'package:test_/presentation/screens/pokedex/pokedex_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = "/home";
+  static const fullRouteName = "/home";
   const HomeScreen({super.key});
 
   @override
@@ -76,11 +78,11 @@ class _PokemonNewsSectionState extends ConsumerState<_PokemonNewsSection> {
           pagingController: pagingController,
           builderDelegate: PagedChildBuilderDelegate(
               itemBuilder: (context, item, index) => NewsListTile(item),
-              noMoreItemsIndicatorBuilder: (context) => const Center(
-                      child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("No more Pokémon News."),
-                  )),
+              noMoreItemsIndicatorBuilder: (context) => Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(8.0),
+                    child: const Text("No more Pokémon News."),
+                  ),
               newPageProgressIndicatorBuilder: (context) => tPikaLoader,
               firstPageProgressIndicatorBuilder: (context) => tPikaLoader))
     ]);
@@ -99,7 +101,6 @@ class _AppBarSection extends StatelessWidget {
     return SliverAppBar.large(
       shape: const RoundedRectangleBorder(borderRadius: borderRadius),
       expandedHeight: 480,
-      actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
       title: Text("Pokedex",
           style: textTheme.titleLarge?.copyWith(color: Colors.white)),
       centerTitle: true,
@@ -146,10 +147,7 @@ class _ButtonGridSection extends StatelessWidget {
         PokeFilledButton(
             backgroundColor: Colors.teal,
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PokedexScreen()));
+              context.go(PokedexScreen.fullRouteName);
             },
             child: const Row(children: [Text("Pokedex")])),
         PokeFilledButton(

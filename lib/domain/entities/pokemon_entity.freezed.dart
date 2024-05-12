@@ -22,6 +22,8 @@ mixin _$PokemonEntity {
   int get heightInCm => throw _privateConstructorUsedError;
   double get weightInKg => throw _privateConstructorUsedError;
   List<String> get types => throw _privateConstructorUsedError;
+  List<String> get abilities => throw _privateConstructorUsedError;
+  List<String> get moves => throw _privateConstructorUsedError;
   List<(String, int)> get stats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,6 +44,8 @@ abstract class $PokemonEntityCopyWith<$Res> {
       int heightInCm,
       double weightInKg,
       List<String> types,
+      List<String> abilities,
+      List<String> moves,
       List<(String, int)> stats});
 }
 
@@ -64,6 +68,8 @@ class _$PokemonEntityCopyWithImpl<$Res, $Val extends PokemonEntity>
     Object? heightInCm = null,
     Object? weightInKg = null,
     Object? types = null,
+    Object? abilities = null,
+    Object? moves = null,
     Object? stats = null,
   }) {
     return _then(_value.copyWith(
@@ -91,6 +97,14 @@ class _$PokemonEntityCopyWithImpl<$Res, $Val extends PokemonEntity>
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      abilities: null == abilities
+          ? _value.abilities
+          : abilities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      moves: null == moves
+          ? _value.moves
+          : moves // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       stats: null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -114,6 +128,8 @@ abstract class _$$PokemonEntityImplCopyWith<$Res>
       int heightInCm,
       double weightInKg,
       List<String> types,
+      List<String> abilities,
+      List<String> moves,
       List<(String, int)> stats});
 }
 
@@ -134,6 +150,8 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
     Object? heightInCm = null,
     Object? weightInKg = null,
     Object? types = null,
+    Object? abilities = null,
+    Object? moves = null,
     Object? stats = null,
   }) {
     return _then(_$PokemonEntityImpl(
@@ -161,6 +179,14 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      abilities: null == abilities
+          ? _value._abilities
+          : abilities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      moves: null == moves
+          ? _value._moves
+          : moves // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       stats: null == stats
           ? _value._stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -179,8 +205,12 @@ class _$PokemonEntityImpl extends _PokemonEntity {
       required this.heightInCm,
       required this.weightInKg,
       required final List<String> types,
+      required final List<String> abilities,
+      required final List<String> moves,
       required final List<(String, int)> stats})
       : _types = types,
+        _abilities = abilities,
+        _moves = moves,
         _stats = stats,
         super._();
 
@@ -202,6 +232,22 @@ class _$PokemonEntityImpl extends _PokemonEntity {
     return EqualUnmodifiableListView(_types);
   }
 
+  final List<String> _abilities;
+  @override
+  List<String> get abilities {
+    if (_abilities is EqualUnmodifiableListView) return _abilities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_abilities);
+  }
+
+  final List<String> _moves;
+  @override
+  List<String> get moves {
+    if (_moves is EqualUnmodifiableListView) return _moves;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_moves);
+  }
+
   final List<(String, int)> _stats;
   @override
   List<(String, int)> get stats {
@@ -212,7 +258,7 @@ class _$PokemonEntityImpl extends _PokemonEntity {
 
   @override
   String toString() {
-    return 'PokemonEntity(id: $id, name: $name, avatar: $avatar, heightInCm: $heightInCm, weightInKg: $weightInKg, types: $types, stats: $stats)';
+    return 'PokemonEntity(id: $id, name: $name, avatar: $avatar, heightInCm: $heightInCm, weightInKg: $weightInKg, types: $types, abilities: $abilities, moves: $moves, stats: $stats)';
   }
 
   @override
@@ -228,6 +274,9 @@ class _$PokemonEntityImpl extends _PokemonEntity {
             (identical(other.weightInKg, weightInKg) ||
                 other.weightInKg == weightInKg) &&
             const DeepCollectionEquality().equals(other._types, _types) &&
+            const DeepCollectionEquality()
+                .equals(other._abilities, _abilities) &&
+            const DeepCollectionEquality().equals(other._moves, _moves) &&
             const DeepCollectionEquality().equals(other._stats, _stats));
   }
 
@@ -240,6 +289,8 @@ class _$PokemonEntityImpl extends _PokemonEntity {
       heightInCm,
       weightInKg,
       const DeepCollectionEquality().hash(_types),
+      const DeepCollectionEquality().hash(_abilities),
+      const DeepCollectionEquality().hash(_moves),
       const DeepCollectionEquality().hash(_stats));
 
   @JsonKey(ignore: true)
@@ -257,6 +308,8 @@ abstract class _PokemonEntity extends PokemonEntity {
       required final int heightInCm,
       required final double weightInKg,
       required final List<String> types,
+      required final List<String> abilities,
+      required final List<String> moves,
       required final List<(String, int)> stats}) = _$PokemonEntityImpl;
   const _PokemonEntity._() : super._();
 
@@ -272,6 +325,10 @@ abstract class _PokemonEntity extends PokemonEntity {
   double get weightInKg;
   @override
   List<String> get types;
+  @override
+  List<String> get abilities;
+  @override
+  List<String> get moves;
   @override
   List<(String, int)> get stats;
   @override

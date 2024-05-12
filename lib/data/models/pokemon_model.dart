@@ -14,6 +14,8 @@ class PokemonModel with _$PokemonModel {
           required int height,
           @JsonKey(name: "sprites") @_AvatarConverter() String? avatar,
           @_TypesConverter() required List<String> types,
+          @_AbilitiesConverter() required List<String> abilities,
+          @_MovesConverter() required List<String> moves,
           @_StatsConverter() required List<(String name, int value)> stats}) =
       _PokemonModel;
 
@@ -41,6 +43,36 @@ class _TypesConverter extends JsonConverter<List<String>, List<dynamic>> {
   @override
   List<String> fromJson(List json) {
     return json.map((e) => e["type"]?["name"].toString() ?? "empty").toList();
+  }
+
+  @override
+  List toJson(List<String> object) {
+    throw UnimplementedError();
+  }
+}
+
+class _AbilitiesConverter extends JsonConverter<List<String>, List<dynamic>> {
+  const _AbilitiesConverter();
+
+  @override
+  List<String> fromJson(List json) {
+    return json
+        .map((e) => e["ability"]?["name"].toString() ?? "empty")
+        .toList();
+  }
+
+  @override
+  List toJson(List<String> object) {
+    throw UnimplementedError();
+  }
+}
+
+class _MovesConverter extends JsonConverter<List<String>, List<dynamic>> {
+  const _MovesConverter();
+
+  @override
+  List<String> fromJson(List json) {
+    return json.map((e) => e["move"]?["name"].toString() ?? "empty").toList();
   }
 
   @override
