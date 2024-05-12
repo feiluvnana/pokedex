@@ -11,6 +11,21 @@ void main() {
   runApp(const Pokedex());
 }
 
+final router = GoRouter(initialLocation: HomeScreen.routeName, routes: [
+  GoRoute(
+      path: HomeScreen.routeName,
+      builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+            path: PokedexScreen.routeName,
+            builder: (context, state) => const PokedexScreen())
+      ]),
+  GoRoute(
+      path: AbilityDetailScreen.fullRouteName,
+      builder: (context, state) =>
+          AbilityDetailScreen(abilityName: state.pathParameters["name"]!))
+]);
+
 class Pokedex extends StatelessWidget {
   const Pokedex({super.key});
 
@@ -18,21 +33,7 @@ class Pokedex extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp.router(
-          routerConfig:
-              GoRouter(initialLocation: HomeScreen.routeName, routes: [
-            GoRoute(
-                path: HomeScreen.routeName,
-                builder: (context, state) => const HomeScreen(),
-                routes: [
-                  GoRoute(
-                      path: PokedexScreen.routeName,
-                      builder: (context, state) => const PokedexScreen())
-                ]),
-            GoRoute(
-                path: AbilityDetailScreen.fullRouteName,
-                builder: (context, state) => AbilityDetailScreen(
-                    abilityName: state.pathParameters["name"]!))
-          ]),
+          routerConfig: router,
           debugShowCheckedModeBanner: false,
           theme: tLightTheme),
     );

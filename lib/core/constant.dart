@@ -51,16 +51,37 @@ const tGenerationColor = {
   "IX": Color(0xFFE19F3E),
 };
 
-const tStatsText = {
-  "hp": "❤️ HP",
-  "attack": "⚔️ ATK",
-  "defense": "🛡️ DEF",
-  "special-attack": "🗡️ Sp.ATK",
-  "special-defense": "🔰 Sp.DEF",
-  "speed": "🎿 SPD",
-  "accuracy": "🎯 ACC",
-  "evasion": "🪽 EVD",
-  "total": "➕ Total"
+const tStatsColor = {
+  "hp": Color(0xFFFD51AA),
+  "attack": Color(0xFFfc894b),
+  "defense": Color(0xFFfc894b),
+  "special-attack": Color(0xFF48EAC8),
+  "special-defense": Color(0xFF48EAC8),
+  "speed": Color(0xFFBEDC4a),
+  "accuracy": Color(0xFFed6ef8),
+  "evasion": Color(0xFFfbc559),
+  "total": Color(0xFF17babc)
+};
+
+const tStatsWidget = {
+  "hp": Text("❤️ HP",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFFD51AA))),
+  "attack": Text("⚔️ ATK",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFfc894b))),
+  "defense": Text("🛡️ DEF",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFfc894b))),
+  "special-attack": Text("🗡️ Sp.ATK",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF48EAC8))),
+  "special-defense": Text("🔰 Sp.DEF",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF48EAC8))),
+  "speed": Text("🎿 SPD",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFBEDC4a))),
+  "accuracy": Text("🎯 ACC",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFed6ef8))),
+  "evasion": Text("🪽 EVD",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFfbc559))),
+  "total": Text("➕ Total",
+      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF17babc)))
 };
 
 const tIconButtonPadding = 8.0;

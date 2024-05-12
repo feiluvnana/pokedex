@@ -46,8 +46,8 @@ class NewsRepositoryImpl extends PokeRepository {
         moves: model.moves.mapFirstLetterUpper().toList(),
         abilities: model.abilities.mapFirstLetterUpper().toList(),
         stats: [
-          ...model.stats.map((e) => (tStatsText[e.$1]!, e.$2)),
-          model.stats.reduce((a, b) => (tStatsText["total"]!, a.$2 + b.$2))
+          ...model.stats,
+          model.stats.reduce((a, b) => ("total", a.$2 + b.$2))
         ]);
   }
 

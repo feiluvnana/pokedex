@@ -19,6 +19,14 @@ class _InfoPanelSectionState extends State<_InfoPanelSection>
     return Column(
       children: [
         TabBar(
+          labelColor: tTypeColors[widget.currentPokemon.types.first],
+          indicator: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
+                      color: tTypeColors[widget.currentPokemon.types.first]!,
+                      width: 2))),
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicatorPadding: EdgeInsets.zero,
           labelPadding: EdgeInsets.zero,
           dividerHeight: 0,
           labelStyle:
@@ -98,14 +106,14 @@ class _InfoPanelSectionState extends State<_InfoPanelSection>
         ...widget.currentPokemon.stats.map((e) => Padding(
               padding: const EdgeInsets.all(4),
               child: Row(children: [
-                Expanded(
-                    flex: 2, child: Text(e.$1, style: textTheme.bodyMedium)),
+                Expanded(flex: 2, child: tStatsWidget[e.$1]!),
                 Expanded(
                     child: Text(e.$2.toString(), style: textTheme.titleSmall)),
                 Expanded(
                   flex: 4,
                   child: LinearProgressIndicator(
-                      value: e.$2 / (e.$1 != "➕ Total" ? 255 : 1000),
+                      color: tStatsColor[e.$1],
+                      value: e.$2 / (e.$1 != "total" ? 255 : 1000),
                       backgroundColor: Colors.grey),
                 )
               ]),

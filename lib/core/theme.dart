@@ -1,36 +1,50 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:test_/core/constant.dart';
 
 final tLightTheme = FlexThemeData.light(
         scheme: FlexScheme.blueM3,
-        textTheme: Typography.blackRedmond.copyWith(
-          titleSmall: Typography.blackRedmond.titleSmall
+        textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
+          titleSmall: GoogleFonts.varelaRoundTextTheme()
+              .titleSmall
               ?.copyWith(fontWeight: FontWeight.bold),
-          titleMedium: Typography.blackRedmond.titleMedium
+          titleMedium: GoogleFonts.varelaRoundTextTheme()
+              .titleMedium
               ?.copyWith(fontWeight: FontWeight.bold),
-          titleLarge: Typography.blackRedmond.titleLarge
+          titleLarge: GoogleFonts.varelaRoundTextTheme()
+              .titleLarge
               ?.copyWith(fontWeight: FontWeight.bold),
-          labelSmall: Typography.blackRedmond.labelSmall
+          labelSmall: GoogleFonts.varelaRoundTextTheme()
+              .labelSmall
               ?.copyWith(fontWeight: FontWeight.bold),
-          labelMedium: Typography.blackRedmond.labelMedium
+          labelMedium: GoogleFonts.varelaRoundTextTheme()
+              .labelMedium
               ?.copyWith(fontWeight: FontWeight.bold),
-          labelLarge: Typography.blackRedmond.labelLarge
+          labelLarge: GoogleFonts.varelaRoundTextTheme()
+              .labelLarge
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
-        primaryTextTheme: Typography.blackRedmond.copyWith(
-            titleSmall: Typography.blackRedmond.titleSmall
-                ?.copyWith(fontWeight: FontWeight.bold),
-            titleMedium: Typography.blackRedmond.titleMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
-            titleLarge: Typography.blackRedmond.titleLarge
-                ?.copyWith(fontWeight: FontWeight.bold),
-            labelSmall: Typography.blackRedmond.labelSmall
-                ?.copyWith(fontWeight: FontWeight.bold),
-            labelMedium: Typography.blackRedmond.labelMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
-            labelLarge: Typography.blackRedmond.labelLarge
-                ?.copyWith(fontWeight: FontWeight.bold)),
+        primaryTextTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
+          titleSmall: GoogleFonts.varelaRoundTextTheme()
+              .titleSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+          titleMedium: GoogleFonts.varelaRoundTextTheme()
+              .titleMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          titleLarge: GoogleFonts.varelaRoundTextTheme()
+              .titleLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
+          labelSmall: GoogleFonts.varelaRoundTextTheme()
+              .labelSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+          labelMedium: GoogleFonts.varelaRoundTextTheme()
+              .labelMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+          labelLarge: GoogleFonts.varelaRoundTextTheme()
+              .labelLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
         subThemesData: const FlexSubThemesData(),
         useMaterial3: true)
     .copyWith(
