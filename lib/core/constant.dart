@@ -84,6 +84,38 @@ const tStatsWidget = {
       style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF17babc)))
 };
 
+final tStatusConditionRegex = RegExp(
+    "($_tBurn|$_tFreeze|$_tParalyze|$_tPoison|$_tSleep|$_tConfuse|fainting|fainted|faint|flinching|flinched|flinch)");
+const _tBurn = "burning|burned|burn";
+const _tFreeze = "freezing|freezed|freeze";
+const _tParalyze = "paralysis|paralyze|paralyzing|paralyzed";
+const _tPoison = "poisoning|poisoned|poison";
+const _tSleep = "asleep|sleeping|slept|sleep";
+const _tConfuse = "confusing|confused|confusion|confuse";
+
+var tStatusConditionMapper = {
+  "burn": "The poison condition inflicts damage every turn.",
+  "burned": "The poison condition inflicts damage every turn.",
+  "burning": "The poison condition inflicts damage every turn.",
+  "paralyze":
+      "The paralysis status causes a Pokémon to be unable to attack a quarter of the time. Additionally, its Speed is reduced.",
+  "paralysis":
+      "The paralysis status causes a Pokémon to be unable to attack a quarter of the time. Additionally, its Speed is reduced.",
+  "paralyzed":
+      "The paralysis status causes a Pokémon to be unable to attack a quarter of the time. Additionally, its Speed is reduced.",
+  "paralyzing":
+      "The paralysis status causes a Pokémon to be unable to attack a quarter of the time. Additionally, its Speed is reduced.",
+  "poison": "The poison condition inflicts damage every turn.",
+  "poisoned": "The poison condition inflicts damage every turn.",
+  "poisoning": "The poison condition inflicts damage every turn.",
+  "flinching":
+      "The flinch status prevents a Pokémon from attacking during one turn.",
+  "flinched":
+      "The flinch status prevents a Pokémon from attacking during one turn.",
+  "flinch":
+      "The flinch status prevents a Pokémon from attacking during one turn.",
+};
+
 const tIconButtonPadding = 8.0;
 const tIconSize = 24.0;
 final tPikaLoader =

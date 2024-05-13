@@ -9,6 +9,7 @@ import 'package:test_/presentation/components/button.dart';
 import 'package:test_/presentation/components/listtile.dart';
 import 'package:test_/presentation/components/scaffold.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:test_/presentation/screens/ability/ability_screen.dart';
 import 'package:test_/presentation/screens/pokedex/pokedex_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -100,7 +101,7 @@ class _AppBarSection extends StatelessWidget {
 
     return SliverAppBar.large(
       shape: const RoundedRectangleBorder(borderRadius: borderRadius),
-      expandedHeight: 480,
+      expandedHeight: 520,
       title: Text("Pokedex",
           style: textTheme.titleLarge?.copyWith(color: Colors.white)),
       centerTitle: true,
@@ -156,7 +157,9 @@ class _ButtonGridSection extends StatelessWidget {
             child: const Row(children: [Text("Moves")])),
         PokeFilledButton(
             backgroundColor: Colors.blue,
-            onPressed: () {},
+            onPressed: () {
+              context.go(AbilityScreen.fullRouteName);
+            },
             child: const Row(children: [Text("Abilities")])),
         PokeFilledButton(
             backgroundColor: Colors.yellow[700],
@@ -169,7 +172,15 @@ class _ButtonGridSection extends StatelessWidget {
         PokeFilledButton(
             backgroundColor: Colors.brown,
             onPressed: () {},
-            child: const Row(children: [Text("Type Effects")]))
+            child: const Row(children: [Text("Type Effects")])),
+        PokeFilledButton(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {},
+            child: const Row(children: [Text("Glossary")])),
+        PokeFilledButton(
+            backgroundColor: Colors.indigo,
+            onPressed: () {},
+            child: const Row(children: [Text("About")]))
       ],
     );
   }

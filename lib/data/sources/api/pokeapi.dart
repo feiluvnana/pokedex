@@ -40,6 +40,11 @@ abstract class PokeApi {
 
   @GET('/ability/{name}')
   Future<AbilityModel> getAbility(@Path("name") String name);
+
+  @GET('/ability')
+  Future<PaginationResponseData> getAbilitiesPaginationData(
+      @Query("offset") int offset,
+      [@Query("limit") int limit = tPokeApiPaginationLimit]);
 }
 
 final pokeApiProvider = Provider((ref) => PokeApi(Dio()));

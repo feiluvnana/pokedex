@@ -59,7 +59,7 @@ class NewsRepositoryImpl extends PokeRepository {
         maleInPercentage: model.genderRate == -1
             ? model.genderRate.toDouble()
             : 12.5 * (8 - model.genderRate),
-        description: model.description,
+        description: model.description.noNewLine(),
         evolutionChainId: model.evolutionChainUrl
             .split("/")
             .elementAt(model.evolutionChainUrl.split("/").length - 2)));

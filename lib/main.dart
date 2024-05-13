@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:test_/core/theme.dart';
 import 'package:test_/presentation/screens/ability/ability_detail_screen.dart';
+import 'package:test_/presentation/screens/ability/ability_screen.dart';
 import 'package:test_/presentation/screens/home/home_screen.dart';
 import 'package:test_/presentation/screens/pokedex/pokedex_screen.dart';
 
@@ -18,7 +19,10 @@ final router = GoRouter(initialLocation: HomeScreen.routeName, routes: [
       routes: [
         GoRoute(
             path: PokedexScreen.routeName,
-            builder: (context, state) => const PokedexScreen())
+            builder: (context, state) => const PokedexScreen()),
+        GoRoute(
+            path: AbilityScreen.routeName,
+            builder: (context, state) => const AbilityScreen())
       ]),
   GoRoute(
       path: AbilityDetailScreen.fullRouteName,

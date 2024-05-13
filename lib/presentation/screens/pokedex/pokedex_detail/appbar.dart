@@ -69,7 +69,7 @@ class _AppBarSectionState extends State<_AppBarSection>
                 child: Wrap(
                   spacing: 5,
                   children: widget.currentPokemon.types
-                      .map((e) => TypeChip(label: e))
+                      .map((e) => TagChip(label: e))
                       .toList(),
                 ),
               ),

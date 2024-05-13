@@ -18,4 +18,10 @@ extension StringIterExt on Iterable<String> {
 
 extension StringExt on String {
   String firstLetterUpper() => "${this[0].toUpperCase()}${substring(1)}";
+
+  String allFirstLettersUpper(
+          {required Pattern separator, String delimiter = ""}) =>
+      split(separator).mapFirstLetterUpper().join(delimiter);
+
+  String noNewLine() => replaceAll(RegExp("[\n\f]"), " ");
 }

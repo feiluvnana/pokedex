@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:test_/core/constant.dart';
 
-class TypeChip extends StatelessWidget {
+class TagChip extends StatelessWidget {
   final String label;
 
-  const TypeChip({super.key, required this.label});
+  const TagChip({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 20,
       width: 65,
-      alignment: Alignment.topCenter,
+      alignment: Alignment.center,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
           color: Colors.white38, borderRadius: BorderRadius.circular(10)),
