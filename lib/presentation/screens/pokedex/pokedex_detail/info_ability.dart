@@ -6,15 +6,10 @@ class _InfoPanelAbilitySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Column(
         children: currentPokemon.abilities
-            .map((e) => ListTile(
-                onTap: () {
-                  context.go("$tAbilityRoute/$e");
-                },
-                leading: Text("🌟", style: textTheme.titleMedium),
-                title: Text(e, style: textTheme.bodySmall)))
+            .map((e) => AbilityNameCard(e,
+                backgroundColor: tTypeColors[currentPokemon.types.first]!))
             .toList());
   }
 }

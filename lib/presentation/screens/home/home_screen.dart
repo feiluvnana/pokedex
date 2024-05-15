@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:test_/core/constant.dart';
 import 'package:test_/data/sources/api/pokenews_api.dart';
 import 'package:test_/domain/entities/poke_news_entity.dart';
@@ -94,10 +95,21 @@ class _AppBarSection extends StatelessWidget {
     const borderRadius = BorderRadius.only(
         bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16));
     final textTheme = Theme.of(context).textTheme;
+    final buttonsPerRow = switch (
+        ResponsiveBreakpoints.of(context).breakpoint.name) {
+      MOBILE => 2,
+      TABLET => 4,
+      DESKTOP => 8,
+      _ => 8
+    };
 
     return SliverAppBar.large(
       shape: const RoundedRectangleBorder(borderRadius: borderRadius),
-      expandedHeight: 520,
+      expandedHeight: 250 +
+          MediaQuery.sizeOf(context).width /
+              buttonsPerRow *
+              (8 / buttonsPerRow) /
+              3,
       title: Text("Pokedex",
           style: textTheme.titleLarge?.copyWith(color: Colors.white)),
       centerTitle: true,
@@ -133,8 +145,16 @@ class _ButtonGridSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonsPerRow = switch (
+        ResponsiveBreakpoints.of(context).breakpoint.name) {
+      MOBILE => 2,
+      TABLET => 4,
+      DESKTOP => 8,
+      _ => 8
+    };
+
     return GridView.count(
-      crossAxisCount: 2,
+      crossAxisCount: buttonsPerRow,
       childAspectRatio: 3,
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,

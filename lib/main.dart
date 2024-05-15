@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:test_/core/constant.dart';
 
 import 'package:test_/core/theme.dart';
@@ -26,17 +27,21 @@ final router = GoRouter(initialLocation: tHomeRoute, routes: [
       routes: [
         GoRoute(
             path: "pokedex",
-            builder: (context, state) => const PokedexScreen()),
-        GoRoute(
-            path: "pokedex/:id",
-            redirect: (context, state) =>
-                state.extra == null ? tPokedexRoute : null,
-            builder: (context, state) {
-              var extra =
-                  state.extra as (int, PagingController<int, PokemonEntity>);
-              return PokedexDetailScreen(
-                  initialIndex: extra.$1, pagingController: extra.$2);
-            }),
+            builder: (context, state) => const PokedexScreen(),
+            routes: [
+              GoRoute(
+                  path: "detail",
+                  redirect: (context, state) =>
+                      state.extra == null ? tPokedexRoute : null,
+                  builder: (context, state) {
+                    var extra = state.extra as (
+                      int,
+                      PagingController<int, PokemonEntity>
+                    );
+                    return PokedexDetailScreen(
+                        initialIndex: extra.$1, pagingController: extra.$2);
+                  }),
+            ]),
         GoRoute(
             path: "ability",
             builder: (context, state) => const AbilityScreen()),
@@ -54,6 +59,12 @@ class Pokedex extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp.router(
+          builder: (context, child) =>
+              ResponsiveBreakpoints.builder(child: child!, breakpoints: [
+                const Breakpoint(start: 0, end: 640, name: MOBILE),
+                const Breakpoint(start: 641, end: 1100, name: TABLET),
+                const Breakpoint(start: 1101, end: 1824, name: DESKTOP)
+              ]),
           routerConfig: router,
           debugShowCheckedModeBanner: false,
           theme: tLightTheme),

@@ -36,7 +36,7 @@ class _AppBarSectionState extends State<_AppBarSection>
 
     return SliverAppBar.large(
         leading: IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: context.pop,
             icon: const Icon(Icons.arrow_back, color: Colors.white)),
         backgroundColor: Colors.transparent,
         expandedHeight: MediaQuery.sizeOf(context).height / 2,

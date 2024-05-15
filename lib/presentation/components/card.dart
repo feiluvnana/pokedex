@@ -23,8 +23,7 @@ class PokedexCard extends StatelessWidget {
 
     return FilledButton(
       onPressed: () {
-        context.go(
-            "$tPokedexRoute/${pagingController.itemList?[currentIndex].id.substring(1)}",
+        context.go("$tPokedexRoute/detail",
             extra: (currentIndex, pagingController));
       },
       style: FilledButton.styleFrom(
@@ -35,41 +34,41 @@ class PokedexCard extends StatelessWidget {
       child: Card(
         color: Colors.transparent,
         elevation: 0,
-        child: Stack(
+        shape: const RoundedRectangleBorder(),
+        child: Column(
           children: [
-            Positioned(
-                bottom: 0,
-                right: 10,
-                child: Image.asset("assets/images/pokeball.png",
-                    color: Colors.grey[300]?.withOpacity(0.4),
-                    width: pokeballSize,
-                    height: pokeballSize,
-                    filterQuality: FilterQuality.high)),
-            Column(
-              children: [
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(entity.id,
-                        style: textTheme.titleSmall?.copyWith(
-                            color: Colors.grey[700]?.withOpacity(0.5)))),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(entity.name,
-                        style: textTheme.titleSmall
-                            ?.copyWith(color: Colors.white))),
+            Align(
+                alignment: Alignment.centerRight,
+                child: Text(entity.id,
+                    style: textTheme.titleSmall
+                        ?.copyWith(color: Colors.grey[700]?.withOpacity(0.5)))),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(entity.name,
+                    style:
+                        textTheme.titleSmall?.copyWith(color: Colors.white))),
+            Expanded(
+              child: Row(children: [
                 Expanded(
-                  child: Row(children: [
-                    Expanded(
-                      flex: 2,
-                      child: Wrap(
-                        runSpacing: 5,
-                        children:
-                            entity.types.map((e) => TagChip(label: e)).toList(),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Hero(
+                  flex: 2,
+                  child: Wrap(
+                    runSpacing: 5,
+                    children:
+                        entity.types.map((e) => TagChip(label: e)).toList(),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                          child: Image.asset("assets/images/pokeball.png",
+                              color: Colors.grey[300]?.withOpacity(0.4),
+                              fit: BoxFit.contain,
+                              width: pokeballSize,
+                              height: pokeballSize,
+                              filterQuality: FilterQuality.high)),
+                      Hero(
                         tag: entity.avatar!,
                         child: CachedNetworkImage(
                           fadeInDuration: Duration.zero,
@@ -78,12 +77,12 @@ class PokedexCard extends StatelessWidget {
                           fit: BoxFit.contain,
                           filterQuality: FilterQuality.low,
                         ),
-                      ),
-                    )
-                  ]),
+                      )
+                    ],
+                  ),
                 )
-              ],
-            ),
+              ]),
+            )
           ],
         ),
       ),
@@ -128,6 +127,37 @@ class AbilityCard extends StatelessWidget {
             ),
             TagChip(label: "Gen ${entity.generation}")
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class AbilityNameCard extends StatelessWidget {
+  final String name;
+  final Color backgroundColor;
+  const AbilityNameCard(this.name, {required this.backgroundColor, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return FilledButton(
+      onPressed: () {
+        context.go("$tAbilityRoute/$name");
+      },
+      style: FilledButton.styleFrom(
+          backgroundColor: backgroundColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          padding: const EdgeInsets.symmetric(horizontal: 8)),
+      child: Card(
+        color: Colors.transparent,
+        elevation: 0,
+        shape: const RoundedRectangleBorder(),
+        child: Center(
+          child: Text(name,
+              style: textTheme.titleMedium?.copyWith(color: Colors.white)),
         ),
       ),
     );

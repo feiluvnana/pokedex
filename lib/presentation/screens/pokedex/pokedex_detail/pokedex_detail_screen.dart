@@ -8,6 +8,7 @@ import 'package:test_/core/constant.dart';
 import 'package:test_/domain/entities/evolution_chain_entity.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/domain/providers/poke_provider.dart';
+import 'package:test_/presentation/components/card.dart';
 import 'package:test_/presentation/components/chip.dart';
 
 part "info_breeding.dart";
