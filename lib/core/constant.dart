@@ -51,6 +51,18 @@ const tGenerationColor = {
   "IX": Color(0xFFE19F3E),
 };
 
+const tGenerationNumber = {
+  "I": 1,
+  "II": 2,
+  "III": 3,
+  "IV": 4,
+  "V": 5,
+  "VI": 6,
+  "VII": 7,
+  "VIII": 8,
+  "IX": 9,
+};
+
 const tStatsColor = {
   "hp": Color(0xFFFD51AA),
   "attack": Color(0xFFfc894b),
@@ -117,7 +129,7 @@ var tStatusConditionMapper = {
 };
 
 const tIconButtonPadding = 8.0;
-const tIconSize = 24.0;
+const tIconSize = 30.0;
 final tPikaLoader =
     Image.asset("assets/images/pika_loader.gif", width: 50, height: 50);
 

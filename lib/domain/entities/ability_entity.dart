@@ -4,6 +4,15 @@ part "ability_entity.freezed.dart";
 
 @freezed
 class AbilityEntity with _$AbilityEntity {
+  const AbilityEntity._();
+
+  factory AbilityEntity.empty() => const AbilityEntity(
+      name: "",
+      generation: "",
+      fullEffect: "",
+      shortEffect: "",
+      description: "");
+
   const factory AbilityEntity(
       {required String name,
       required String fullEffect,

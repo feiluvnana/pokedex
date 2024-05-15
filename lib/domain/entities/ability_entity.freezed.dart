@@ -145,13 +145,14 @@ class __$$AbilityEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AbilityEntityImpl implements _AbilityEntity {
+class _$AbilityEntityImpl extends _AbilityEntity {
   const _$AbilityEntityImpl(
       {required this.name,
       required this.fullEffect,
       required this.shortEffect,
       required this.description,
-      required this.generation});
+      required this.generation})
+      : super._();
 
   @override
   final String name;
@@ -196,13 +197,14 @@ class _$AbilityEntityImpl implements _AbilityEntity {
       __$$AbilityEntityImplCopyWithImpl<_$AbilityEntityImpl>(this, _$identity);
 }
 
-abstract class _AbilityEntity implements AbilityEntity {
+abstract class _AbilityEntity extends AbilityEntity {
   const factory _AbilityEntity(
       {required final String name,
       required final String fullEffect,
       required final String shortEffect,
       required final String description,
       required final String generation}) = _$AbilityEntityImpl;
+  const _AbilityEntity._() : super._();
 
   @override
   String get name;

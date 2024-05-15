@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_/core/constant.dart';
@@ -169,19 +170,20 @@ class _AbilityText extends StatelessWidget {
       } else {
         final finalText =
             markedText.substring(indexes[i] + 1, indexes[i + 1] - 1);
-        spans.add(WidgetSpan(
-            alignment: PlaceholderAlignment.middle,
-            child: Tooltip(
-                message: tStatusConditionMapper[finalText] ?? "",
-                triggerMode: TooltipTriggerMode.tap,
-                child: Text(finalText,
-                    style: textTheme.bodyMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 2,
-                        decorationColor: Colors.white,
-                        decorationStyle: TextDecorationStyle.dotted)))));
+        spans.add(TextSpan(
+            text: finalText,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(tStatusConditionMapper[finalText] ?? "")));
+              },
+            style: textTheme.bodyMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+                decorationThickness: 2,
+                decorationColor: Colors.white,
+                decorationStyle: TextDecorationStyle.dotted)));
       }
       isPlainText = !isPlainText;
     }
