@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_/core/constant.dart';
 import 'package:test_/domain/entities/ability_entity.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/presentation/components/chip.dart';
-import 'package:test_/presentation/screens/pokedex/pokedex_detail/pokedex_detail_screen.dart';
 
 class PokedexCard extends StatelessWidget {
   static const pokeballSize = 80.0;
@@ -23,13 +23,9 @@ class PokedexCard extends StatelessWidget {
 
     return FilledButton(
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PokedexDetailScreen(
-                  initialIndex: currentIndex,
-                  pagingController: pagingController),
-            ));
+        context.go(
+            "$tPokedexRoute/${pagingController.itemList?[currentIndex].id.substring(1)}",
+            extra: (currentIndex, pagingController));
       },
       style: FilledButton.styleFrom(
           backgroundColor: tTypeColors[entity.types.first],
@@ -113,6 +109,7 @@ class AbilityCard extends StatelessWidget {
       child: Card(
         color: Colors.transparent,
         elevation: 0,
+        shape: const RoundedRectangleBorder(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -152,7 +149,7 @@ class _AbilityText extends StatelessWidget {
 
     var isPlainText = true;
     List<InlineSpan> spans = [];
-    var indexes = (RegExp("(<.+?>)").hasMatch(markedText)
+    var indexes = RegExp("(<.+?>)").hasMatch(markedText)
         ? [
             0,
             ...RegExp("(<.+?>)")
@@ -161,7 +158,7 @@ class _AbilityText extends StatelessWidget {
                 .reduce((a, b) => [...a, ...b]),
             markedText.length - 1
           ]
-        : [0, markedText.length - 1]);
+        : [0, markedText.isEmpty ? 0 : markedText.length - 1];
 
     for (int i = 0; i < indexes.length - 1; i++) {
       if (isPlainText) {

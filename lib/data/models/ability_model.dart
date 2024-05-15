@@ -26,7 +26,13 @@ class _EffectEntriesConverter
   const _EffectEntriesConverter();
   @override
   (String, String) fromJson(List json) {
-    final object = json.firstWhere((e) => e["language"]["name"] == "en");
+    final object = json.firstWhere((e) => e["language"]["name"] == "en",
+        orElse: () => json.firstWhere(
+            (e) => e["language"]["name"].toString().contains("jp"),
+            orElse: () => {
+                  "effect": "No effect description available.",
+                  "short_effect": "No effect description available."
+                }));
     return (object["effect"], object["short_effect"]);
   }
 

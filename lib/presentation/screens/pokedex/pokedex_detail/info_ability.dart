@@ -11,7 +11,7 @@ class _InfoPanelAbilitySection extends StatelessWidget {
         children: currentPokemon.abilities
             .map((e) => ListTile(
                 onTap: () {
-                  context.push("${AbilityDetailScreen.routeName}/$e");
+                  context.go("$tAbilityRoute/$e");
                 },
                 leading: Text("🌟", style: textTheme.titleMedium),
                 title: Text(e, style: textTheme.bodySmall)))

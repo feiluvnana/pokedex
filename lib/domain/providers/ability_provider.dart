@@ -27,7 +27,7 @@ final getAbilitiesProvider = FutureProvider.autoDispose
               abilities.where((e) => e.generation == filter.generation));
         }
       }
-      print("${result.map((e) => e.name)}");
+
       if (result.isEmpty &&
           abilities.any((ability) =>
               tGenerationNumber[ability.generation]! >

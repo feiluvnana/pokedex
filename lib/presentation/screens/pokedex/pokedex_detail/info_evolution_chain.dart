@@ -19,14 +19,7 @@ class _InfoPanelEvolutionChainSection extends ConsumerWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(32),
-          child: ArrowElement(
-              show: true,
-              id: entity.pokemon.id,
-              color: Colors.red,
-              targetIds: entity.evolvesTo.map((e) => e.pokemon.id).toList(),
-              targetAnchor: Alignment.topCenter,
-              sourceAnchor: Alignment.bottomCenter,
-              child: Text(entity.pokemon.name)),
+          child: Text(entity.pokemon.name),
         ),
         ...entity.evolvesTo.map((e) => _craftArrowElement(e))
       ],

@@ -9,12 +9,8 @@ import 'package:test_/presentation/components/button.dart';
 import 'package:test_/presentation/components/listtile.dart';
 import 'package:test_/presentation/components/scaffold.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:test_/presentation/screens/ability/ability_screen.dart';
-import 'package:test_/presentation/screens/pokedex/pokedex_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const routeName = "/home";
-  static const fullRouteName = "/home";
   const HomeScreen({super.key});
 
   @override
@@ -148,7 +144,7 @@ class _ButtonGridSection extends StatelessWidget {
         PokeFilledButton(
             backgroundColor: Colors.teal,
             onPressed: () {
-              context.go(PokedexScreen.fullRouteName);
+              context.go(tPokedexRoute);
             },
             child: const Row(children: [Text("Pokedex")])),
         PokeFilledButton(
@@ -158,7 +154,7 @@ class _ButtonGridSection extends StatelessWidget {
         PokeFilledButton(
             backgroundColor: Colors.blue,
             onPressed: () {
-              context.go(AbilityScreen.fullRouteName);
+              context.go(tAbilityRoute);
             },
             child: const Row(children: [Text("Abilities")])),
         PokeFilledButton(

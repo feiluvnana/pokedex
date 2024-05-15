@@ -133,4 +133,8 @@ const tIconSize = 30.0;
 final tPikaLoader =
     Image.asset("assets/images/pika_loader.gif", width: 50, height: 50);
 
-const tPokeApiPaginationLimit = 10;
+const tPokeApiPaginationLimit = 15;
+
+const tHomeRoute = "/home";
+const tPokedexRoute = "/home/pokedex";
+const tAbilityRoute = "/home/ability";

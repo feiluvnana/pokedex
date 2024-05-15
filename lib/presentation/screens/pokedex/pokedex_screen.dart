@@ -6,11 +6,8 @@ import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/domain/providers/poke_provider.dart';
 import 'package:test_/presentation/components/card.dart';
 import 'package:test_/presentation/components/scaffold.dart';
-import 'package:test_/presentation/screens/home/home_screen.dart';
 
 class PokedexScreen extends ConsumerStatefulWidget {
-  static const routeName = "pokedex";
-  static const fullRouteName = "${HomeScreen.routeName}/$routeName";
   const PokedexScreen({super.key});
 
   @override

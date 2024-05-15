@@ -9,8 +9,6 @@ import 'package:test_/domain/entities/evolution_chain_entity.dart';
 import 'package:test_/domain/entities/pokemon_entity.dart';
 import 'package:test_/domain/providers/poke_provider.dart';
 import 'package:test_/presentation/components/chip.dart';
-import 'package:test_/presentation/screens/ability/ability_detail_screen.dart';
-import 'package:widget_arrows/widget_arrows.dart';
 
 part "info_breeding.dart";
 part "info_size.dart";

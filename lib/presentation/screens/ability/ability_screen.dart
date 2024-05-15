@@ -9,11 +9,8 @@ import 'package:test_/domain/providers/ability_provider.dart';
 import 'package:test_/presentation/components/card.dart';
 import 'package:test_/presentation/components/popup.dart';
 import 'package:test_/presentation/components/scaffold.dart';
-import 'package:test_/presentation/screens/home/home_screen.dart';
 
 class AbilityScreen extends ConsumerStatefulWidget {
-  static const routeName = "ability";
-  static const fullRouteName = "${HomeScreen.routeName}/$routeName";
   const AbilityScreen({super.key});
 
   @override
@@ -32,13 +29,14 @@ class _AbilityScreenState extends ConsumerState<AbilityScreen> {
       if (!mounted) return;
 
       var items = await ref.read(getAbilitiesProvider((page, filters)).future);
-      if (items.length >= tPokeApiPaginationLimit) {
-        pagingController.appendPage(items, page + 1);
-      } else if ((items.isEmpty && filters.isEmpty) ||
+      if ((items.isEmpty && filters.isEmpty) ||
           (items.length == 1 && items[0] == AbilityEntity.empty())) {
         pagingController.appendLastPage([]);
       } else if (filters.isNotEmpty && items.isEmpty) {
         pagingController.notifyPageRequestListeners(page + 1);
+      } else if ((items.length >= tPokeApiPaginationLimit) ||
+          (items.isNotEmpty && filters.isNotEmpty)) {
+        pagingController.appendPage(items, page + 1);
       } else {
         pagingController.appendLastPage(items);
       }
