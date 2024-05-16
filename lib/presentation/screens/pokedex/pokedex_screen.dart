@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/domain/entities/pokemon_entity.dart';
-import 'package:test_/domain/providers/poke_provider.dart';
-import 'package:test_/presentation/components/card.dart';
-import 'package:test_/presentation/components/scaffold.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/domain/providers/poke_provider.dart';
+import 'package:pokedex/presentation/components/card.dart';
+import 'package:pokedex/presentation/components/scaffold.dart';
 
 class PokedexScreen extends ConsumerStatefulWidget {
   const PokedexScreen({super.key});

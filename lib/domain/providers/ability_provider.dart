@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/core/extensions.dart';
-import 'package:test_/data/repositories/ability_repository_impl.dart';
-import 'package:test_/domain/entities/ability_entity.dart';
-import 'package:test_/domain/entities/ability_filter_entity.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/core/extensions.dart';
+import 'package:pokedex/data/repositories/ability_repository_impl.dart';
+import 'package:pokedex/domain/entities/ability_entity.dart';
+import 'package:pokedex/domain/entities/ability_filter_entity.dart';
 
 final getAbilitiesProvider = FutureProvider.autoDispose
     .family<List<AbilityEntity>, (int, List<AbilityFilterEntity>)>(

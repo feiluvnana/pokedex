@@ -4,22 +4,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/domain/entities/evolution_chain_entity.dart';
-import 'package:test_/domain/entities/pokemon_entity.dart';
-import 'package:test_/domain/providers/poke_provider.dart';
-import 'package:test_/presentation/components/card.dart';
-import 'package:test_/presentation/components/chip.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_species_entity.dart';
+import 'package:pokedex/domain/providers/poke_provider.dart';
+import 'package:pokedex/presentation/components/card.dart';
+import 'package:pokedex/presentation/components/chip.dart';
 
-part "info_breeding.dart";
-part "info_size.dart";
-part "info_general.dart";
-part "info_type_attack.dart";
-part "info_type_defense.dart";
-part "info_evolution_chain.dart";
-part "info_ability.dart";
-part "info_move.dart";
+part "info_base_stats.dart";
 part "info.dart";
+part "info_about.dart";
+part "info_skill.dart";
 part "appbar.dart";
 
 class PokedexDetailScreen extends StatefulWidget {

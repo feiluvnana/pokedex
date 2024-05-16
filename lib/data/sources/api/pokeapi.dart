@@ -9,12 +9,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/data/models/ability_model.dart';
-import 'package:test_/data/models/evolution_chain_model.dart';
-import 'package:test_/data/models/pokemon_model.dart';
-import 'package:test_/data/models/pokemon_species_model.dart';
-import 'package:test_/data/models/pokemon_types_model.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/data/models/ability_model.dart';
+import 'package:pokedex/data/models/evolution_chain_model.dart';
+import 'package:pokedex/data/models/pokemon_model.dart';
+import 'package:pokedex/data/models/pokemon_species_model.dart';
+import 'package:pokedex/data/models/pokemon_types_model.dart';
 
 part "pokeapi.freezed.dart";
 part 'pokeapi.g.dart';

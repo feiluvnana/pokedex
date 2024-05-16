@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/core/extensions.dart';
-import 'package:test_/data/models/evolution_chain_model.dart';
-import 'package:test_/data/models/pokemon_model.dart';
-import 'package:test_/data/sources/api/pokeapi.dart';
-import 'package:test_/domain/entities/evolution_chain_entity.dart';
-import 'package:test_/domain/entities/pokemon_entity.dart';
-import 'package:test_/domain/entities/pokemon_species_entity.dart';
-import 'package:test_/domain/entities/pokemon_types_entity.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/core/extensions.dart';
+import 'package:pokedex/data/models/evolution_chain_model.dart';
+import 'package:pokedex/data/models/pokemon_model.dart';
+import 'package:pokedex/data/sources/api/pokeapi.dart';
+import 'package:pokedex/domain/entities/evolution_chain_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_species_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_types_entity.dart';
 
 final pokeRepositoryProvider = Provider<PokeRepository>(
     (ref) => NewsRepositoryImpl(client: ref.watch(pokeApiProvider)));

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/data/sources/api/pokenews_api.dart';
-import 'package:test_/domain/entities/poke_news_entity.dart';
-import 'package:test_/domain/providers/poke_news_provider.dart';
-import 'package:test_/presentation/components/button.dart';
-import 'package:test_/presentation/components/listtile.dart';
-import 'package:test_/presentation/components/scaffold.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/data/sources/api/pokenews_api.dart';
+import 'package:pokedex/domain/entities/poke_news_entity.dart';
+import 'package:pokedex/domain/providers/poke_news_provider.dart';
+import 'package:pokedex/presentation/components/button.dart';
+import 'package:pokedex/presentation/components/listtile.dart';
+import 'package:pokedex/presentation/components/scaffold.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeScreen extends StatelessWidget {

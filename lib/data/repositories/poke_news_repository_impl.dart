@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/data/sources/api/pokenews_api.dart';
-import 'package:test_/domain/entities/poke_news_entity.dart';
+import 'package:pokedex/data/sources/api/pokenews_api.dart';
+import 'package:pokedex/domain/entities/poke_news_entity.dart';
 
 final pokeNewsRepositoryProvider = Provider<PokeNewsRepository>(
     (ref) => PokeNewsRepositoryImpl(client: ref.watch(pokeNewsApiProvider)));

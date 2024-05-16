@@ -3,10 +3,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/domain/entities/ability_entity.dart';
-import 'package:test_/domain/entities/pokemon_entity.dart';
-import 'package:test_/presentation/components/chip.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/domain/entities/ability_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/presentation/components/chip.dart';
 
 class PokedexCard extends StatelessWidget {
   static const pokeballSize = 80.0;
@@ -99,7 +99,9 @@ class AbilityCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return FilledButton(
-      onPressed: () {},
+      onPressed: () {
+        context.go("$tAbilityRoute/${entity.name}");
+      },
       style: FilledButton.styleFrom(
           backgroundColor: tGenerationColor[entity.generation],
           shape:

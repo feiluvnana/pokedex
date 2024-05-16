@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/domain/entities/ability_entity.dart';
-import 'package:test_/domain/entities/ability_filter_entity.dart';
-import 'package:test_/domain/providers/ability_provider.dart';
-import 'package:test_/presentation/components/card.dart';
-import 'package:test_/presentation/components/popup.dart';
-import 'package:test_/presentation/components/scaffold.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/domain/entities/ability_entity.dart';
+import 'package:pokedex/domain/entities/ability_filter_entity.dart';
+import 'package:pokedex/domain/providers/ability_provider.dart';
+import 'package:pokedex/presentation/components/card.dart';
+import 'package:pokedex/presentation/components/popup.dart';
+import 'package:pokedex/presentation/components/scaffold.dart';
 
 class AbilityScreen extends ConsumerStatefulWidget {
   const AbilityScreen({super.key});
@@ -118,7 +118,7 @@ class _AbilitiesListSection extends StatelessWidget {
             noMoreItemsIndicatorBuilder: (context) => const Center(
                     child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("No more Pokémon News."),
+                  child: Text("No more Pokémon Abilities."),
                 )),
             newPageProgressIndicatorBuilder: (context) => tPikaLoader,
             firstPageProgressIndicatorBuilder: (context) => tPikaLoader),

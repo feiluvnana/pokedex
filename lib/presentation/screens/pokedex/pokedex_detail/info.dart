@@ -30,7 +30,7 @@ class _InfoPanelSectionState extends State<_InfoPanelSection>
           labelPadding: EdgeInsets.zero,
           dividerHeight: 0,
           labelStyle:
-              textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
+              textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
           controller: tabController,
           tabs: const [
             Tab(text: "About"),
@@ -41,98 +41,15 @@ class _InfoPanelSectionState extends State<_InfoPanelSection>
         ),
         Expanded(
             child: TabBarView(controller: tabController, children: [
-          SingleChildScrollView(child: _aboutTab()),
-          SingleChildScrollView(child: _baseStatsTab()),
-          SingleChildScrollView(child: _evolutionTab()),
-          SingleChildScrollView(child: _skillTab())
+          SingleChildScrollView(
+              child: _InfoAboutTab(currentPokemon: widget.currentPokemon)),
+          SingleChildScrollView(
+              child: _InfoBaseStatsTab(currentPokemon: widget.currentPokemon)),
+          const SingleChildScrollView(child: Center(child: Text("WIP"))),
+          SingleChildScrollView(
+              child: _InfoSkillTab(currentPokemon: widget.currentPokemon))
         ])),
       ],
-    );
-  }
-
-  Widget _skillTab() {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Abilities", style: textTheme.titleSmall),
-          _InfoPanelAbilitySection(currentPokemon: widget.currentPokemon),
-          Text("Moves", style: textTheme.titleSmall),
-          _InfoPanelMoveSection(currentPokemon: widget.currentPokemon),
-        ],
-      ),
-    );
-  }
-
-  Widget _evolutionTab() {
-    // final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _InfoPanelEvolutionChainSection(currentPokemon: widget.currentPokemon)
-        ],
-      ),
-    );
-  }
-
-  Widget _aboutTab() {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("General", style: textTheme.titleSmall),
-          _InfoPanelGeneralSection(currentPokemon: widget.currentPokemon),
-          Text("Size", style: textTheme.titleSmall),
-          _InfoPanelSizeSection(currentPokemon: widget.currentPokemon),
-          const SizedBox(height: 8),
-          Text("Breeding", style: textTheme.titleSmall),
-          _InfoPanelBreedingSection(currentPokemon: widget.currentPokemon)
-        ],
-      ),
-    );
-  }
-
-  Widget _baseStatsTab() {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        ...widget.currentPokemon.stats.map((e) => Padding(
-              padding: const EdgeInsets.all(4),
-              child: Row(children: [
-                Expanded(flex: 2, child: tStatsWidget[e.$1]!),
-                Expanded(
-                    child: Text(e.$2.toString(), style: textTheme.titleSmall)),
-                Expanded(
-                  flex: 4,
-                  child: LinearProgressIndicator(
-                      color: tStatsColor[e.$1],
-                      value: e.$2 / (e.$1 != "total" ? 255 : 1000),
-                      backgroundColor: Colors.grey),
-                )
-              ]),
-            )),
-        const SizedBox(height: 8),
-        Text("Type Defenses", style: textTheme.titleSmall),
-        Text(
-            "The effectiveness of each type when attacking ${widget.currentPokemon.name}.",
-            style: textTheme.bodySmall),
-        const SizedBox(height: 8),
-        _InfoPanelTypeDefenseSection(currentPokemon: widget.currentPokemon),
-        const SizedBox(height: 8),
-        Text("Type Attacks", style: textTheme.titleSmall),
-        Text(
-            "The effectiveness of ${widget.currentPokemon.name}'s attacks on each type.",
-            style: textTheme.bodySmall),
-        const SizedBox(height: 8),
-        _InfoPanelTypeAttackSection(currentPokemon: widget.currentPokemon),
-      ]),
     );
   }
 

@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:test_/core/constant.dart';
+import 'package:pokedex/core/constant.dart';
 
 class PokeScaffold extends StatefulWidget {
   static const pokeballSize = 200.0;

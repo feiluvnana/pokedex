@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_/domain/entities/poke_news_entity.dart';
+import 'package:pokedex/domain/entities/poke_news_entity.dart';
 
 class NewsListTile extends StatelessWidget {
   final PokeNewsEntity entity;

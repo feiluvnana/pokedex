@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/core/extensions.dart';
-import 'package:test_/data/repositories/poke_repository_impl.dart';
-import 'package:test_/domain/entities/evolution_chain_entity.dart';
-import 'package:test_/domain/entities/pokemon_entity.dart';
-import 'package:test_/domain/entities/pokemon_species_entity.dart';
-import 'package:test_/domain/entities/pokemon_types_entity.dart';
+import 'package:pokedex/core/extensions.dart';
+import 'package:pokedex/data/repositories/poke_repository_impl.dart';
+import 'package:pokedex/domain/entities/evolution_chain_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_species_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_types_entity.dart';
 
 final getPokemonsProvider =
     FutureProvider.autoDispose.family<List<PokemonEntity>, int>((ref, page) {

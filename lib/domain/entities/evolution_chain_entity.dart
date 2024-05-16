@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/domain/entities/pokemon_entity.dart';
 
 part "evolution_chain_entity.freezed.dart";
 

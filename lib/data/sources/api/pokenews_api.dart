@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:test_/data/models/poke_news_model.dart';
+import 'package:pokedex/data/models/poke_news_model.dart';
 
 part 'pokenews_api.g.dart';
 

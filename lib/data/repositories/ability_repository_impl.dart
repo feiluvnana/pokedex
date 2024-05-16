@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_/core/constant.dart';
-import 'package:test_/core/extensions.dart';
-import 'package:test_/data/sources/api/pokeapi.dart';
-import 'package:test_/domain/entities/ability_entity.dart';
+import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/core/extensions.dart';
+import 'package:pokedex/data/sources/api/pokeapi.dart';
+import 'package:pokedex/domain/entities/ability_entity.dart';
 
 final abilityRepositoryProvider = Provider<AbilityRepository>(
     (ref) => AbilityRepositoryImpl(client: ref.watch(pokeApiProvider)));

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_/core/constant.dart';
+import 'package:pokedex/core/constant.dart';
 
 class TagChip extends StatelessWidget {
   final String label;
