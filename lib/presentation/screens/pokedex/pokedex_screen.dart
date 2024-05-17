@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+
 import 'package:pokedex/core/constant.dart';
 import 'package:pokedex/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/domain/providers/poke_provider.dart';
@@ -87,14 +87,6 @@ class _PokemonListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardsPerRow = switch (
-        ResponsiveBreakpoints.of(context).breakpoint.name) {
-      MOBILE => 2,
-      TABLET => 4,
-      DESKTOP => 6,
-      _ => 8
-    };
-
     return SliverPadding(
       padding: const EdgeInsets.all(8.0),
       sliver: PagedSliverGrid<int, PokemonEntity>(
@@ -110,8 +102,8 @@ class _PokemonListSection extends StatelessWidget {
                   )),
               newPageProgressIndicatorBuilder: (context) => tPikaLoader,
               firstPageProgressIndicatorBuilder: (context) => tPikaLoader),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: cardsPerRow,
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 210,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
               childAspectRatio: 1.618)),

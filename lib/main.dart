@@ -3,9 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'package:pokedex/core/constant.dart';
 
+import 'package:pokedex/core/constant.dart';
 import 'package:pokedex/core/theme.dart';
 import 'package:pokedex/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/presentation/screens/ability/ability_detail_screen.dart';
@@ -61,12 +60,6 @@ class Pokedex extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp.router(
-          builder: (context, child) =>
-              ResponsiveBreakpoints.builder(child: child!, breakpoints: [
-                const Breakpoint(start: 0, end: 640, name: MOBILE),
-                const Breakpoint(start: 641, end: 1100, name: TABLET),
-                const Breakpoint(start: 1101, end: 1824, name: DESKTOP)
-              ]),
           routerConfig: router,
           debugShowCheckedModeBanner: false,
           theme: tLightTheme),

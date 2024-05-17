@@ -106,22 +106,25 @@ class _AbilitiesListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.all(8.0),
-      sliver: PagedSliverList<int, AbilityEntity>(
-        pagingController: pagingController,
-        builderDelegate: PagedChildBuilderDelegate(
-            itemBuilder: (context, item, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AbilityCard(item),
-                ),
-            noMoreItemsIndicatorBuilder: (context) => const Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("No more Pokémon Abilities."),
-                )),
-            newPageProgressIndicatorBuilder: (context) => tPikaLoader,
-            firstPageProgressIndicatorBuilder: (context) => tPikaLoader),
+    return SliverFillRemaining(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: PagedMasonryGridView<int, AbilityEntity>.extent(
+          pagingController: pagingController,
+          builderDelegate: PagedChildBuilderDelegate(
+              itemBuilder: (context, item, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: AbilityCard(item, index: index + 1),
+                  ),
+              noMoreItemsIndicatorBuilder: (context) => const Center(
+                      child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("No more Pokémon Abilities."),
+                  )),
+              newPageProgressIndicatorBuilder: (context) => tPikaLoader,
+              firstPageProgressIndicatorBuilder: (context) => tPikaLoader),
+          maxCrossAxisExtent: 600,
+        ),
       ),
     );
   }

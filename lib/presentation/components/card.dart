@@ -92,7 +92,8 @@ class PokedexCard extends StatelessWidget {
 
 class AbilityCard extends StatelessWidget {
   final AbilityEntity entity;
-  const AbilityCard(this.entity, {super.key});
+  final int? index;
+  const AbilityCard(this.entity, {super.key, this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -114,18 +115,20 @@ class AbilityCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(entity.name,
-                    style:
-                        textTheme.titleMedium?.copyWith(color: Colors.white)),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width / 3 * 2,
-                  child: _AbilityText(entity.shortEffect),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("${index == null ? "" : "$index. "}${entity.name}",
+                      style:
+                          textTheme.titleMedium?.copyWith(color: Colors.white)),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width / 3 * 2,
+                    child: _AbilityText(entity.shortEffect),
+                  ),
+                ],
+              ),
             ),
             TagChip(label: "Gen ${entity.generation}")
           ],

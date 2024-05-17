@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
 import 'package:pokedex/core/constant.dart';
 import 'package:pokedex/data/sources/api/pokenews_api.dart';
 import 'package:pokedex/domain/entities/poke_news_entity.dart';
@@ -9,7 +10,6 @@ import 'package:pokedex/domain/providers/poke_news_provider.dart';
 import 'package:pokedex/presentation/components/button.dart';
 import 'package:pokedex/presentation/components/listtile.dart';
 import 'package:pokedex/presentation/components/scaffold.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -95,21 +95,11 @@ class _AppBarSection extends StatelessWidget {
     const borderRadius = BorderRadius.only(
         bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16));
     final textTheme = Theme.of(context).textTheme;
-    final buttonsPerRow = switch (
-        ResponsiveBreakpoints.of(context).breakpoint.name) {
-      MOBILE => 2,
-      TABLET => 4,
-      DESKTOP => 8,
-      _ => 8
-    };
+    final buttonsPerRow = MediaQuery.sizeOf(context).width ~/ 210 + 1;
 
     return SliverAppBar.large(
       shape: const RoundedRectangleBorder(borderRadius: borderRadius),
-      expandedHeight: 250 +
-          MediaQuery.sizeOf(context).width /
-              buttonsPerRow *
-              (8 / buttonsPerRow) /
-              3,
+      expandedHeight: 250.0 + (70 * (8 / buttonsPerRow).ceil()),
       title: Text("Pokedex",
           style: textTheme.titleLarge?.copyWith(color: Colors.white)),
       centerTitle: true,
@@ -145,19 +135,13 @@ class _ButtonGridSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonsPerRow = switch (
-        ResponsiveBreakpoints.of(context).breakpoint.name) {
-      MOBILE => 2,
-      TABLET => 4,
-      DESKTOP => 8,
-      _ => 8
-    };
-
-    return GridView.count(
-      crossAxisCount: buttonsPerRow,
-      childAspectRatio: 3,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
+    return GridView(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 210,
+        childAspectRatio: 3,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+      ),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
