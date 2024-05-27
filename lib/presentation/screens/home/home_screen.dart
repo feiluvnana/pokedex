@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -95,11 +97,13 @@ class _AppBarSection extends StatelessWidget {
     const borderRadius = BorderRadius.only(
         bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16));
     final textTheme = Theme.of(context).textTheme;
-    final buttonsPerRow = MediaQuery.sizeOf(context).width ~/ 210 + 1;
+    final buttonPerRows = MediaQuery.sizeOf(context).width ~/ 200 + 1;
+    final buttonHeight =
+        min(MediaQuery.sizeOf(context).width / buttonPerRows + 20, 200) / 3;
 
     return SliverAppBar.large(
       shape: const RoundedRectangleBorder(borderRadius: borderRadius),
-      expandedHeight: 250.0 + (70 * (8 / buttonsPerRow).ceil()),
+      expandedHeight: 250.0 + buttonHeight * (8 / buttonPerRows).ceil(),
       title: Text("Pokedex",
           style: textTheme.titleLarge?.copyWith(color: Colors.white)),
       centerTitle: true,
@@ -137,7 +141,7 @@ class _ButtonGridSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView(
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 210,
+        maxCrossAxisExtent: 180,
         childAspectRatio: 3,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
