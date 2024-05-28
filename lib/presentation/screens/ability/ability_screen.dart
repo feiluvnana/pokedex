@@ -27,17 +27,16 @@ class _AbilityScreenState extends ConsumerState<AbilityScreen> {
     super.initState();
     pagingController.addPageRequestListener((page) async {
       if (!mounted) return;
-
-      var items = await ref.read(getAbilitiesProvider((page, filters)).future);
-      if ((items.isEmpty && filters.isEmpty) ||
-          (items.length == 1 && items[0] == AbilityEntity.empty())) {
-        pagingController.appendLastPage([]);
-      } else if (filters.isNotEmpty && items.isEmpty) {
-        pagingController.notifyPageRequestListeners(page + 1);
-      } else if ((items.length >= tPokeApiPaginationLimit) ||
-          (items.isNotEmpty && filters.isNotEmpty)) {
-        pagingController.appendPage(items, page + 1);
+      if (filters.isEmpty) {
+        var items = await ref.read(getAbilitiesProvider(page).future);
+        if (items.length < tPokeApiPaginationLimit) {
+          pagingController.appendLastPage(items);
+        } else {
+          pagingController.appendPage(items, page + 1);
+        }
       } else {
+        var items =
+            await ref.read(getAbilitiesWithFiltersProvider(filters).future);
         pagingController.appendLastPage(items);
       }
     });
@@ -76,9 +75,9 @@ class _AbilityScreenState extends ConsumerState<AbilityScreen> {
                           } else {
                             filters.add(newFilter);
                           }
-                          ref.invalidate(getAbilitiesProvider);
-                          pagingController.refresh();
                         });
+                        ref.invalidate(getAbilitiesWithFiltersProvider);
+                        pagingController.refresh();
                       });
                     },
                     icon: const Icon(Icons.filter_alt_outlined))

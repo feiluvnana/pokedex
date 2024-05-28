@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:pokedex/core/constant.dart';
+import 'package:pokedex/core/status_regex.dart';
 import 'package:pokedex/domain/entities/ability_entity.dart';
 import 'package:pokedex/domain/entities/pokemon_entity.dart';
 import 'package:pokedex/presentation/components/chip.dart';
@@ -206,8 +207,13 @@ class _AbilityText extends StatelessWidget {
             text: finalText,
             recognizer: TapGestureRecognizer()
               ..onTap = () {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(tStatusConditionMapper[finalText] ?? "")));
+                    duration: const Duration(seconds: 30),
+                    content: Text(tStatusConditionMapper.entries
+                        .firstWhere((e) => e.key.hasMatch(finalText),
+                            orElse: () => MapEntry(RegExp(""), ""))
+                        .value)));
               },
             style: textTheme.bodyMedium?.copyWith(
                 color: Colors.white,

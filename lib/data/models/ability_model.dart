@@ -62,7 +62,12 @@ class _DescriptionConverter extends JsonConverter<String, List<dynamic>> {
   @override
   String fromJson(List json) {
     return json
-        .firstWhere((e) => e["language"]["name"] == "en")["flavor_text"]
+        .firstWhere((e) => e["language"]["name"] == "en",
+            orElse: () => json.firstWhere(
+                (e) => e["language"]["name"].toString().contains("jp"),
+                orElse: () => {
+                      "flavor_text": "No description available.",
+                    }))["flavor_text"]
         .toString();
   }
 
